@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 import typing
 from collections import OrderedDict
 
@@ -26,7 +28,7 @@ FHIRErrorCodes: Incomplete
 class FHIRAbstractModel(BaseModel):
     __fhir_serialization_exclude_comment__: bool = False
     __resource_type__: str = "Resource"
-    fhir_comments: str | list[str] | None = ...
+    fhir_comments: str | list[str] | None = None
     def __init__(self, /, **data: typing.Any) -> None: ...
     @classmethod
     def element_properties(cls) -> typing.Generator[FieldInfo, None, None]: ...

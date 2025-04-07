@@ -1,8 +1,15 @@
-from google.cloud.bigquery.enums import StandardSqlTypeNames as StandardSqlTypeNames
 from typing import Any, Iterable
 
+from google.cloud.bigquery.enums import StandardSqlTypeNames as StandardSqlTypeNames
+
 class StandardSqlDataType:
-    def __init__(self, type_kind: StandardSqlTypeNames | None = ..., array_element_type: StandardSqlDataType | None = None, struct_type: StandardSqlStructType | None = None, range_element_type: StandardSqlDataType | None = None) -> None: ...
+    def __init__(
+        self,
+        type_kind: StandardSqlTypeNames | None = ...,
+        array_element_type: StandardSqlDataType | None = None,
+        struct_type: StandardSqlStructType | None = None,
+        range_element_type: StandardSqlDataType | None = None,
+    ) -> None: ...
     @property
     def type_kind(self) -> StandardSqlTypeNames | None: ...
     @type_kind.setter

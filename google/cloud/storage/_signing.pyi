@@ -1,8 +1,11 @@
+# mypy: ignore-errors
+
+from typing import NamedTuple
+
 from _typeshed import Incomplete
 from google.auth import exceptions as exceptions
 from google.auth.transport import requests as requests
 from google.cloud.storage.retry import DEFAULT_RETRY as DEFAULT_RETRY
-from typing import NamedTuple
 
 NOW: Incomplete
 SERVICE_ACCOUNT_URL: str
@@ -20,10 +23,43 @@ class _Canonical(NamedTuple):
     headers: Incomplete
 
 def canonicalize_v2(method, resource, query_parameters, headers): ...
-def generate_signed_url_v2(credentials, resource, expiration, api_access_endpoint: str = '', method: str = 'GET', content_md5: Incomplete | None = None, content_type: Incomplete | None = None, response_type: Incomplete | None = None, response_disposition: Incomplete | None = None, generation: Incomplete | None = None, headers: Incomplete | None = None, query_parameters: Incomplete | None = None, service_account_email: Incomplete | None = None, access_token: Incomplete | None = None, universe_domain: Incomplete | None = None): ...
+def generate_signed_url_v2(
+    credentials,
+    resource,
+    expiration,
+    api_access_endpoint: str = "",
+    method: str = "GET",
+    content_md5: Incomplete | None = None,
+    content_type: Incomplete | None = None,
+    response_type: Incomplete | None = None,
+    response_disposition: Incomplete | None = None,
+    generation: Incomplete | None = None,
+    headers: Incomplete | None = None,
+    query_parameters: Incomplete | None = None,
+    service_account_email: Incomplete | None = None,
+    access_token: Incomplete | None = None,
+    universe_domain: Incomplete | None = None,
+): ...
 
 SEVEN_DAYS: Incomplete
 DEFAULT_ENDPOINT: str
 
-def generate_signed_url_v4(credentials, resource, expiration, api_access_endpoint=..., method: str = 'GET', content_md5: Incomplete | None = None, content_type: Incomplete | None = None, response_type: Incomplete | None = None, response_disposition: Incomplete | None = None, generation: Incomplete | None = None, headers: Incomplete | None = None, query_parameters: Incomplete | None = None, service_account_email: Incomplete | None = None, access_token: Incomplete | None = None, universe_domain: Incomplete | None = None, _request_timestamp: Incomplete | None = None): ...
+def generate_signed_url_v4(
+    credentials,
+    resource,
+    expiration,
+    api_access_endpoint=...,
+    method: str = "GET",
+    content_md5: Incomplete | None = None,
+    content_type: Incomplete | None = None,
+    response_type: Incomplete | None = None,
+    response_disposition: Incomplete | None = None,
+    generation: Incomplete | None = None,
+    headers: Incomplete | None = None,
+    query_parameters: Incomplete | None = None,
+    service_account_email: Incomplete | None = None,
+    access_token: Incomplete | None = None,
+    universe_domain: Incomplete | None = None,
+    _request_timestamp: Incomplete | None = None,
+): ...
 def get_v4_now_dtstamps(): ...

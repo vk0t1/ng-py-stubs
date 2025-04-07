@@ -1,8 +1,9 @@
+from typing import NamedTuple
+
 from _typeshed import Incomplete
 from google.cloud.bigquery import job as job
 from google.cloud.bigquery.dbapi import exceptions as exceptions
 from google.cloud.bigquery_storage import ArrowSerializationOptions as ArrowSerializationOptions
-from typing import NamedTuple
 
 class Column(NamedTuple):
     name: Incomplete
@@ -22,7 +23,13 @@ class Cursor:
     @property
     def query_job(self) -> job.QueryJob | None: ...
     def close(self) -> None: ...
-    def execute(self, operation, parameters: Incomplete | None = None, job_id: Incomplete | None = None, job_config: Incomplete | None = None) -> None: ...
+    def execute(
+        self,
+        operation,
+        parameters: Incomplete | None = None,
+        job_id: Incomplete | None = None,
+        job_config: Incomplete | None = None,
+    ) -> None: ...
     def executemany(self, operation, seq_of_parameters) -> None: ...
     def fetchone(self): ...
     def fetchmany(self, size: Incomplete | None = None): ...

@@ -1,6 +1,8 @@
+# mypy: ignore-errors
+from email.mime.application import MIMEApplication
+
 import requests
 from _typeshed import Incomplete
-from email.mime.application import MIMEApplication
 from google.cloud import exceptions as exceptions
 from google.cloud.storage._http import Connection as Connection
 
@@ -25,4 +27,6 @@ class Batch(Connection):
     def finish(self, raise_exception: bool = True): ...
     def current(self): ...
     def __enter__(self): ...
-    def __exit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: types.TracebackType | None) -> None: ...
+    def __exit__(
+        self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: types.TracebackType | None
+    ) -> None: ...

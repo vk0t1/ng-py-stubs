@@ -1,10 +1,15 @@
+# mypy: ignore-errors
+
 import typing
+
+from _typeshed import Incomplete
+
 from ....core.datetime_utils import serialize_datetime as serialize_datetime
-from ....core.pydantic_utilities import deep_union_pydantic_dicts as deep_union_pydantic_dicts, pydantic_v1 as pydantic_v1
+from ....core.pydantic_utilities import deep_union_pydantic_dicts as deep_union_pydantic_dicts
+from ....core.pydantic_utilities import pydantic_v1 as pydantic_v1
 from .observations_view import ObservationsView as ObservationsView
 from .score import Score as Score
 from .trace import Trace as Trace
-from _typeshed import Incomplete
 
 class TraceWithFullDetails(Trace):
     html_path: str

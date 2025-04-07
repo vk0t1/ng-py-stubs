@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 from google.api_core.exceptions import NotFound as NotFound
 from google.cloud.storage._opentelemetry_tracing import create_trace_span as create_trace_span
@@ -11,7 +13,17 @@ JSON_API_V1_PAYLOAD_FORMAT: str
 NONE_PAYLOAD_FORMAT: str
 
 class BucketNotification:
-    def __init__(self, bucket, topic_name: Incomplete | None = None, topic_project: Incomplete | None = None, custom_attributes: Incomplete | None = None, event_types: Incomplete | None = None, blob_name_prefix: Incomplete | None = None, payload_format=..., notification_id: Incomplete | None = None) -> None: ...
+    def __init__(
+        self,
+        bucket,
+        topic_name: Incomplete | None = None,
+        topic_project: Incomplete | None = None,
+        custom_attributes: Incomplete | None = None,
+        event_types: Incomplete | None = None,
+        blob_name_prefix: Incomplete | None = None,
+        payload_format=...,
+        notification_id: Incomplete | None = None,
+    ) -> None: ...
     @classmethod
     def from_api_repr(cls, resource, bucket): ...
     @property

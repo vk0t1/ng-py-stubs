@@ -1,5 +1,8 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
-from google.resumable_media import DataCorruption as DataCorruptionDynamicParent, InvalidResponse as InvalidResponseDynamicParent
+from google.resumable_media import DataCorruption as DataCorruptionDynamicParent
+from google.resumable_media import InvalidResponse as InvalidResponseDynamicParent
 
 InvalidResponseDynamicParent = Exception
 DataCorruptionDynamicParent = Exception

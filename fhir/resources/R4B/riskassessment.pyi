@@ -3,30 +3,30 @@ from . import domainresource as domainresource
 from . import fhirtypes as fhirtypes
 
 class RiskAssessment(domainresource.DomainResource):
-    __resource_type__: str
-    basedOn: fhirtypes.ReferenceType | None
-    basis: list[fhirtypes.ReferenceType] | None
-    code: fhirtypes.CodeableConceptType | None
-    condition: fhirtypes.ReferenceType | None
-    encounter: fhirtypes.ReferenceType | None
-    identifier: list[fhirtypes.IdentifierType] | None
-    method: fhirtypes.CodeableConceptType | None
-    mitigation: fhirtypes.StringType | None
-    mitigation__ext: fhirtypes.FHIRPrimitiveExtensionType | None
-    note: list[fhirtypes.AnnotationType] | None
-    occurrenceDateTime: fhirtypes.DateTimeType | None
-    occurrenceDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType | None
-    occurrencePeriod: fhirtypes.PeriodType | None
-    parent: fhirtypes.ReferenceType | None
-    performer: fhirtypes.ReferenceType | None
-    prediction: list[fhirtypes.RiskAssessmentPredictionType] | None
-    reasonCode: list[fhirtypes.CodeableConceptType] | None
-    reasonReference: list[fhirtypes.ReferenceType] | None
-    status: fhirtypes.CodeType | None
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType | None
+    __resource_type__: str = "RiskAssessment"
+    basedOn: fhirtypes.ReferenceType | None = None
+    basis: list[fhirtypes.ReferenceType] | None = None
+    code: fhirtypes.CodeableConceptType | None = None
+    condition: fhirtypes.ReferenceType | None = None
+    encounter: fhirtypes.ReferenceType | None = None
+    identifier: list[fhirtypes.IdentifierType] | None = None
+    method: fhirtypes.CodeableConceptType | None = None
+    mitigation: fhirtypes.StringType | None = None
+    mitigation__ext: fhirtypes.FHIRPrimitiveExtensionType | None = None
+    note: list[fhirtypes.AnnotationType] | None = None
+    occurrenceDateTime: fhirtypes.DateTimeType | None = None
+    occurrenceDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType | None = None
+    occurrencePeriod: fhirtypes.PeriodType | None = None
+    parent: fhirtypes.ReferenceType | None = None
+    performer: fhirtypes.ReferenceType | None = None
+    prediction: list[fhirtypes.RiskAssessmentPredictionType] | None = None
+    reasonCode: list[fhirtypes.CodeableConceptType] | None = None
+    reasonReference: list[fhirtypes.ReferenceType] | None = None
+    status: fhirtypes.CodeType | None = None
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType | None = None
     subject: fhirtypes.ReferenceType
     @classmethod
-    def elements_sequence(cls): ...
+    def elements_sequence(cls) -> list[str]: ...
     def get_required_fields(self) -> list[tuple[str, str]]: ...
     def get_one_of_many_fields(self) -> dict[str, list[str]]: ...
 
@@ -44,5 +44,5 @@ class RiskAssessmentPrediction(backboneelement.BackboneElement):
     whenPeriod: fhirtypes.PeriodType | None
     whenRange: fhirtypes.RangeType | None
     @classmethod
-    def elements_sequence(cls): ...
+    def elements_sequence(cls) -> list[str]: ...
     def get_one_of_many_fields(self) -> dict[str, list[str]]: ...

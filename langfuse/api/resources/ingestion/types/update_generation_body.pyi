@@ -1,12 +1,17 @@
+# mypy: ignore-errors
+
 import datetime as dt
 import typing
+
+from _typeshed import Incomplete
+
 from ....core.datetime_utils import serialize_datetime as serialize_datetime
-from ....core.pydantic_utilities import deep_union_pydantic_dicts as deep_union_pydantic_dicts, pydantic_v1 as pydantic_v1
+from ....core.pydantic_utilities import deep_union_pydantic_dicts as deep_union_pydantic_dicts
+from ....core.pydantic_utilities import pydantic_v1 as pydantic_v1
 from ...commons.types.map_value import MapValue as MapValue
 from .ingestion_usage import IngestionUsage as IngestionUsage
 from .update_span_body import UpdateSpanBody as UpdateSpanBody
 from .usage_details import UsageDetails as UsageDetails
-from _typeshed import Incomplete
 
 class UpdateGenerationBody(UpdateSpanBody):
     completion_start_time: dt.datetime | None

@@ -1,7 +1,8 @@
-from _typeshed import Incomplete
 from typing import Any, AsyncIterator, Awaitable, Callable, Generic, Iterator, TypeVar
 
-T = TypeVar('T')
+from _typeshed import Incomplete
+
+T = TypeVar("T")
 PagedItem: Incomplete
 
 class _BasePager(Generic[T]):

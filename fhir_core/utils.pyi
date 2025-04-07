@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 import typing
 
 from pydantic.fields import FieldInfo

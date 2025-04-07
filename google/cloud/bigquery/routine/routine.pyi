@@ -1,6 +1,8 @@
-from _typeshed import Incomplete
-from google.cloud.bigquery.standard_sql import StandardSqlDataType as StandardSqlDataType, StandardSqlTableType as StandardSqlTableType
 from typing import Any
+
+from _typeshed import Incomplete
+from google.cloud.bigquery.standard_sql import StandardSqlDataType as StandardSqlDataType
+from google.cloud.bigquery.standard_sql import StandardSqlTableType as StandardSqlTableType
 
 class RoutineType:
     ROUTINE_TYPE_UNSPECIFIED: str
@@ -118,7 +120,14 @@ class RoutineReference:
     def __ne__(self, other): ...
 
 class RemoteFunctionOptions:
-    def __init__(self, endpoint: Incomplete | None = None, connection: Incomplete | None = None, max_batching_rows: Incomplete | None = None, user_defined_context: Incomplete | None = None, _properties: Incomplete | None = None) -> None: ...
+    def __init__(
+        self,
+        endpoint: Incomplete | None = None,
+        connection: Incomplete | None = None,
+        max_batching_rows: Incomplete | None = None,
+        user_defined_context: Incomplete | None = None,
+        _properties: Incomplete | None = None,
+    ) -> None: ...
     @property
     def connection(self): ...
     @connection.setter

@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 import datetime as dt
 import httpx
 import pydantic

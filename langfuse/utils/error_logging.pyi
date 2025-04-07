@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 
 logger: Incomplete

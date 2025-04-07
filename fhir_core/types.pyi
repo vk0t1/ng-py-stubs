@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 import abc
 import dataclasses
 import re

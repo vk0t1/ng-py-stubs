@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
-from google.api_core import exceptions as exceptions, retry as retry
+from google.api_core import exceptions as exceptions
+from google.api_core import retry as retry
 
 DEFAULT_RETRY: Incomplete
 DEFAULT_TIMEOUT: Incomplete

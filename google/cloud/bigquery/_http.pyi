@@ -8,6 +8,8 @@ class Connection(_http.JSONConnection):
     API_BASE_URL: Incomplete
     API_BASE_MTLS_URL: Incomplete
     ALLOW_AUTO_SWITCH_TO_MTLS_URL: Incomplete
-    def __init__(self, client, client_info: Incomplete | None = None, api_endpoint: Incomplete | None = None) -> None: ...
+    def __init__(
+        self, client, client_info: Incomplete | None = None, api_endpoint: Incomplete | None = None
+    ) -> None: ...
     API_VERSION: str
     API_URL_TEMPLATE: str

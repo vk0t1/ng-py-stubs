@@ -1,4 +1,5 @@
 import datetime
+
 from _typeshed import Incomplete
 
 Date = datetime.date

@@ -1,23 +1,38 @@
+import typing
+from typing import Any, Iterable
+
 import geopandas
 import pandas
 import pyarrow
-import typing
 from _typeshed import Incomplete
-from google.api_core import exceptions as exceptions, retry as retries
+from google.api_core import exceptions as exceptions
+from google.api_core import retry as retries
 from google.cloud import bigquery_storage as bigquery_storage
 from google.cloud.bigquery._tqdm_helpers import wait_for_query as wait_for_query
 from google.cloud.bigquery.client import Client as Client
-from google.cloud.bigquery.dataset import Dataset as Dataset, DatasetListItem as DatasetListItem, DatasetReference as DatasetReference
+from google.cloud.bigquery.dataset import Dataset as Dataset
+from google.cloud.bigquery.dataset import DatasetListItem as DatasetListItem
+from google.cloud.bigquery.dataset import DatasetReference as DatasetReference
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration as EncryptionConfiguration
-from google.cloud.bigquery.enums import DefaultPandasDTypes as DefaultPandasDTypes, KeyResultStatementKind as KeyResultStatementKind
+from google.cloud.bigquery.enums import DefaultPandasDTypes as DefaultPandasDTypes
+from google.cloud.bigquery.enums import KeyResultStatementKind as KeyResultStatementKind
 from google.cloud.bigquery.external_config import ExternalConfig as ExternalConfig
 from google.cloud.bigquery.job.base import _AsyncJob, _JobConfig
-from google.cloud.bigquery.query import ArrayQueryParameter as ArrayQueryParameter, ConnectionProperty as ConnectionProperty, ScalarQueryParameter as ScalarQueryParameter, StructQueryParameter as StructQueryParameter, UDFResource as UDFResource
-from google.cloud.bigquery.retry import DEFAULT_JOB_RETRY as DEFAULT_JOB_RETRY, DEFAULT_RETRY as DEFAULT_RETRY, POLLING_DEFAULT_VALUE as POLLING_DEFAULT_VALUE
+from google.cloud.bigquery.query import ArrayQueryParameter as ArrayQueryParameter
+from google.cloud.bigquery.query import ConnectionProperty as ConnectionProperty
+from google.cloud.bigquery.query import ScalarQueryParameter as ScalarQueryParameter
+from google.cloud.bigquery.query import StructQueryParameter as StructQueryParameter
+from google.cloud.bigquery.query import UDFResource as UDFResource
+from google.cloud.bigquery.retry import DEFAULT_JOB_RETRY as DEFAULT_JOB_RETRY
+from google.cloud.bigquery.retry import DEFAULT_RETRY as DEFAULT_RETRY
+from google.cloud.bigquery.retry import POLLING_DEFAULT_VALUE as POLLING_DEFAULT_VALUE
 from google.cloud.bigquery.routine import RoutineReference as RoutineReference
 from google.cloud.bigquery.schema import SchemaField as SchemaField
-from google.cloud.bigquery.table import RangePartitioning as RangePartitioning, RowIterator as RowIterator, TableReference as TableReference, TimePartitioning as TimePartitioning, _EmptyRowIterator
-from typing import Any, Iterable
+from google.cloud.bigquery.table import RangePartitioning as RangePartitioning
+from google.cloud.bigquery.table import RowIterator as RowIterator
+from google.cloud.bigquery.table import TableReference as TableReference
+from google.cloud.bigquery.table import TimePartitioning as TimePartitioning
+from google.cloud.bigquery.table import _EmptyRowIterator
 
 class BiEngineReason(typing.NamedTuple):
     code: str = ...
@@ -53,7 +68,12 @@ class SearchStats(typing.NamedTuple):
     def from_api_repr(cls, stats: dict[str, Any]): ...
 
 class ScriptOptions:
-    def __init__(self, statement_timeout_ms: int | None = None, statement_byte_budget: int | None = None, key_result_statement: KeyResultStatementKind | None = None) -> None: ...
+    def __init__(
+        self,
+        statement_timeout_ms: int | None = None,
+        statement_byte_budget: int | None = None,
+        key_result_statement: KeyResultStatementKind | None = None,
+    ) -> None: ...
     @classmethod
     def from_api_repr(cls, resource: dict[str, Any]) -> ScriptOptions: ...
     def to_api_repr(self) -> dict[str, Any]: ...
@@ -259,10 +279,51 @@ class QueryJob(_AsyncJob):
     def dml_stats(self) -> DmlStats | None: ...
     @property
     def bi_engine_stats(self) -> BiEngineStats | None: ...
-    def result(self, page_size: int | None = None, max_results: int | None = None, retry: retries.Retry | None = ..., timeout: float | object | None = ..., start_index: int | None = None, job_retry: retries.Retry | None = ...) -> RowIterator | _EmptyRowIterator: ...
-    def to_arrow(self, progress_bar_type: str | None = None, bqstorage_client: bigquery_storage.BigQueryReadClient | None = None, create_bqstorage_client: bool = True, max_results: int | None = None) -> pyarrow.Table: ...
-    def to_dataframe(self, bqstorage_client: bigquery_storage.BigQueryReadClient | None = None, dtypes: dict[str, Any] | None = None, progress_bar_type: str | None = None, create_bqstorage_client: bool = True, max_results: int | None = None, geography_as_object: bool = False, bool_dtype: Any | None = ..., int_dtype: Any | None = ..., float_dtype: Any | None = None, string_dtype: Any | None = None, date_dtype: Any | None = ..., datetime_dtype: Any | None = None, time_dtype: Any | None = ..., timestamp_dtype: Any | None = None, range_date_dtype: Any | None = ..., range_datetime_dtype: Any | None = ..., range_timestamp_dtype: Any | None = ...) -> pandas.DataFrame: ...
-    def to_geodataframe(self, bqstorage_client: bigquery_storage.BigQueryReadClient | None = None, dtypes: dict[str, Any] | None = None, progress_bar_type: str | None = None, create_bqstorage_client: bool = True, max_results: int | None = None, geography_column: str | None = None) -> geopandas.GeoDataFrame: ...
+    def result(
+        self,
+        page_size: int | None = None,
+        max_results: int | None = None,
+        retry: retries.Retry | None = ...,
+        timeout: float | object | None = ...,
+        start_index: int | None = None,
+        job_retry: retries.Retry | None = ...,
+    ) -> RowIterator | _EmptyRowIterator: ...
+    def to_arrow(
+        self,
+        progress_bar_type: str | None = None,
+        bqstorage_client: bigquery_storage.BigQueryReadClient | None = None,
+        create_bqstorage_client: bool = True,
+        max_results: int | None = None,
+    ) -> pyarrow.Table: ...
+    def to_dataframe(
+        self,
+        bqstorage_client: bigquery_storage.BigQueryReadClient | None = None,
+        dtypes: dict[str, Any] | None = None,
+        progress_bar_type: str | None = None,
+        create_bqstorage_client: bool = True,
+        max_results: int | None = None,
+        geography_as_object: bool = False,
+        bool_dtype: Any | None = ...,
+        int_dtype: Any | None = ...,
+        float_dtype: Any | None = None,
+        string_dtype: Any | None = None,
+        date_dtype: Any | None = ...,
+        datetime_dtype: Any | None = None,
+        time_dtype: Any | None = ...,
+        timestamp_dtype: Any | None = None,
+        range_date_dtype: Any | None = ...,
+        range_datetime_dtype: Any | None = ...,
+        range_timestamp_dtype: Any | None = ...,
+    ) -> pandas.DataFrame: ...
+    def to_geodataframe(
+        self,
+        bqstorage_client: bigquery_storage.BigQueryReadClient | None = None,
+        dtypes: dict[str, Any] | None = None,
+        progress_bar_type: str | None = None,
+        create_bqstorage_client: bool = True,
+        max_results: int | None = None,
+        geography_column: str | None = None,
+    ) -> geopandas.GeoDataFrame: ...
     def __iter__(self): ...
 
 class QueryPlanEntryStep:

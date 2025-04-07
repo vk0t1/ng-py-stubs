@@ -1,7 +1,8 @@
 import datetime
+from typing import Any, Sequence
+
 from google.cloud.bigquery import standard_sql as standard_sql
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration as EncryptionConfiguration
-from typing import Any, Sequence
 
 class Model:
     def __init__(self, model_ref: ModelReference | str | None) -> None: ...

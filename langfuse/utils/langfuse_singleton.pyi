@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import httpx
 from langfuse import Langfuse as Langfuse
 from langfuse.types import MaskFunction as MaskFunction

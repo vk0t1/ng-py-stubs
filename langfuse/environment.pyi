@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 
 common_release_envs: Incomplete

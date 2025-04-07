@@ -1,7 +1,9 @@
 from _typeshed import Incomplete
 from google.cloud.bigquery.job.base import _AsyncJob, _JobConfig
 from google.cloud.bigquery.model import ModelReference as ModelReference
-from google.cloud.bigquery.table import Table as Table, TableListItem as TableListItem, TableReference as TableReference
+from google.cloud.bigquery.table import Table as Table
+from google.cloud.bigquery.table import TableListItem as TableListItem
+from google.cloud.bigquery.table import TableReference as TableReference
 
 class ExtractJobConfig(_JobConfig):
     def __init__(self, **kwargs) -> None: ...

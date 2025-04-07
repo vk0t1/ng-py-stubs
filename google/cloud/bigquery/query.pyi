@@ -1,8 +1,9 @@
-from _typeshed import Incomplete
 from typing import Any
 
+from _typeshed import Incomplete
+
 class ConnectionProperty:
-    def __init__(self, key: str = '', value: str = '') -> None: ...
+    def __init__(self, key: str = "", value: str = "") -> None: ...
     @property
     def key(self) -> str: ...
     @property
@@ -35,7 +36,9 @@ class ScalarQueryParameterType(_AbstractQueryParameterType):
 class ArrayQueryParameterType(_AbstractQueryParameterType):
     name: Incomplete
     description: Incomplete
-    def __init__(self, array_type, *, name: Incomplete | None = None, description: Incomplete | None = None) -> None: ...
+    def __init__(
+        self, array_type, *, name: Incomplete | None = None, description: Incomplete | None = None
+    ) -> None: ...
     @classmethod
     def from_api_repr(cls, resource): ...
     def to_api_repr(self): ...
@@ -71,7 +74,9 @@ class ScalarQueryParameter(_AbstractQueryParameter):
     name: Incomplete
     type_: Incomplete
     value: Incomplete
-    def __init__(self, name: str | None, type_: str | ScalarQueryParameterType | None, value: _SCALAR_VALUE_TYPE) -> None: ...
+    def __init__(
+        self, name: str | None, type_: str | ScalarQueryParameterType | None, value: _SCALAR_VALUE_TYPE
+    ) -> None: ...
     @classmethod
     def positional(cls, type_: str | ScalarQueryParameterType, value: _SCALAR_VALUE_TYPE) -> ScalarQueryParameter: ...
     @classmethod
@@ -111,9 +116,17 @@ class RangeQueryParameter(_AbstractQueryParameter):
     range_element_type: Incomplete
     start: Incomplete
     end: Incomplete
-    def __init__(self, range_element_type, start: Incomplete | None = None, end: Incomplete | None = None, name: Incomplete | None = None) -> None: ...
+    def __init__(
+        self,
+        range_element_type,
+        start: Incomplete | None = None,
+        end: Incomplete | None = None,
+        name: Incomplete | None = None,
+    ) -> None: ...
     @classmethod
-    def positional(cls, range_element_type, start: Incomplete | None = None, end: Incomplete | None = None) -> RangeQueryParameter: ...
+    def positional(
+        cls, range_element_type, start: Incomplete | None = None, end: Incomplete | None = None
+    ) -> RangeQueryParameter: ...
     @classmethod
     def from_api_repr(cls, resource: dict) -> RangeQueryParameter: ...
     def to_api_repr(self) -> dict: ...

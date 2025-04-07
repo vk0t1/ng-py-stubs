@@ -1,216 +1,220 @@
+# mypy: ignore-errors
+
 import datetime
-import pydantic
 import types as builtin_types
 import typing
-from . import _common
-from _typeshed import Incomplete
 from enum import Enum
 from typing import Any, Callable, Literal
+
+import pydantic
+from _typeshed import Incomplete
 from typing_extensions import TypedDict
+
+from . import _common
 
 VersionedUnionType: Incomplete
 PIL_Image: Incomplete
 logger: Incomplete
-T = typing.TypeVar('T', bound='GenerateContentResponse')
+T = typing.TypeVar("T", bound="GenerateContentResponse")
 
 class Outcome(_common.CaseInSensitiveEnum):
-    OUTCOME_UNSPECIFIED = 'OUTCOME_UNSPECIFIED'
-    OUTCOME_OK = 'OUTCOME_OK'
-    OUTCOME_FAILED = 'OUTCOME_FAILED'
-    OUTCOME_DEADLINE_EXCEEDED = 'OUTCOME_DEADLINE_EXCEEDED'
+    OUTCOME_UNSPECIFIED = "OUTCOME_UNSPECIFIED"
+    OUTCOME_OK = "OUTCOME_OK"
+    OUTCOME_FAILED = "OUTCOME_FAILED"
+    OUTCOME_DEADLINE_EXCEEDED = "OUTCOME_DEADLINE_EXCEEDED"
 
 class Language(_common.CaseInSensitiveEnum):
-    LANGUAGE_UNSPECIFIED = 'LANGUAGE_UNSPECIFIED'
-    PYTHON = 'PYTHON'
+    LANGUAGE_UNSPECIFIED = "LANGUAGE_UNSPECIFIED"
+    PYTHON = "PYTHON"
 
 class Type(_common.CaseInSensitiveEnum):
-    TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED'
-    STRING = 'STRING'
-    NUMBER = 'NUMBER'
-    INTEGER = 'INTEGER'
-    BOOLEAN = 'BOOLEAN'
-    ARRAY = 'ARRAY'
-    OBJECT = 'OBJECT'
+    TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED"
+    STRING = "STRING"
+    NUMBER = "NUMBER"
+    INTEGER = "INTEGER"
+    BOOLEAN = "BOOLEAN"
+    ARRAY = "ARRAY"
+    OBJECT = "OBJECT"
 
 class HarmCategory(_common.CaseInSensitiveEnum):
-    HARM_CATEGORY_UNSPECIFIED = 'HARM_CATEGORY_UNSPECIFIED'
-    HARM_CATEGORY_HATE_SPEECH = 'HARM_CATEGORY_HATE_SPEECH'
-    HARM_CATEGORY_DANGEROUS_CONTENT = 'HARM_CATEGORY_DANGEROUS_CONTENT'
-    HARM_CATEGORY_HARASSMENT = 'HARM_CATEGORY_HARASSMENT'
-    HARM_CATEGORY_SEXUALLY_EXPLICIT = 'HARM_CATEGORY_SEXUALLY_EXPLICIT'
-    HARM_CATEGORY_CIVIC_INTEGRITY = 'HARM_CATEGORY_CIVIC_INTEGRITY'
+    HARM_CATEGORY_UNSPECIFIED = "HARM_CATEGORY_UNSPECIFIED"
+    HARM_CATEGORY_HATE_SPEECH = "HARM_CATEGORY_HATE_SPEECH"
+    HARM_CATEGORY_DANGEROUS_CONTENT = "HARM_CATEGORY_DANGEROUS_CONTENT"
+    HARM_CATEGORY_HARASSMENT = "HARM_CATEGORY_HARASSMENT"
+    HARM_CATEGORY_SEXUALLY_EXPLICIT = "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+    HARM_CATEGORY_CIVIC_INTEGRITY = "HARM_CATEGORY_CIVIC_INTEGRITY"
 
 class HarmBlockMethod(_common.CaseInSensitiveEnum):
-    HARM_BLOCK_METHOD_UNSPECIFIED = 'HARM_BLOCK_METHOD_UNSPECIFIED'
-    SEVERITY = 'SEVERITY'
-    PROBABILITY = 'PROBABILITY'
+    HARM_BLOCK_METHOD_UNSPECIFIED = "HARM_BLOCK_METHOD_UNSPECIFIED"
+    SEVERITY = "SEVERITY"
+    PROBABILITY = "PROBABILITY"
 
 class HarmBlockThreshold(_common.CaseInSensitiveEnum):
-    HARM_BLOCK_THRESHOLD_UNSPECIFIED = 'HARM_BLOCK_THRESHOLD_UNSPECIFIED'
-    BLOCK_LOW_AND_ABOVE = 'BLOCK_LOW_AND_ABOVE'
-    BLOCK_MEDIUM_AND_ABOVE = 'BLOCK_MEDIUM_AND_ABOVE'
-    BLOCK_ONLY_HIGH = 'BLOCK_ONLY_HIGH'
-    BLOCK_NONE = 'BLOCK_NONE'
-    OFF = 'OFF'
+    HARM_BLOCK_THRESHOLD_UNSPECIFIED = "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+    BLOCK_LOW_AND_ABOVE = "BLOCK_LOW_AND_ABOVE"
+    BLOCK_MEDIUM_AND_ABOVE = "BLOCK_MEDIUM_AND_ABOVE"
+    BLOCK_ONLY_HIGH = "BLOCK_ONLY_HIGH"
+    BLOCK_NONE = "BLOCK_NONE"
+    OFF = "OFF"
 
 class Mode(_common.CaseInSensitiveEnum):
-    MODE_UNSPECIFIED = 'MODE_UNSPECIFIED'
-    MODE_DYNAMIC = 'MODE_DYNAMIC'
+    MODE_UNSPECIFIED = "MODE_UNSPECIFIED"
+    MODE_DYNAMIC = "MODE_DYNAMIC"
 
 class State(_common.CaseInSensitiveEnum):
-    STATE_UNSPECIFIED = 'STATE_UNSPECIFIED'
-    ACTIVE = 'ACTIVE'
-    ERROR = 'ERROR'
+    STATE_UNSPECIFIED = "STATE_UNSPECIFIED"
+    ACTIVE = "ACTIVE"
+    ERROR = "ERROR"
 
 class FinishReason(_common.CaseInSensitiveEnum):
-    FINISH_REASON_UNSPECIFIED = 'FINISH_REASON_UNSPECIFIED'
-    STOP = 'STOP'
-    MAX_TOKENS = 'MAX_TOKENS'
-    SAFETY = 'SAFETY'
-    RECITATION = 'RECITATION'
-    OTHER = 'OTHER'
-    BLOCKLIST = 'BLOCKLIST'
-    PROHIBITED_CONTENT = 'PROHIBITED_CONTENT'
-    SPII = 'SPII'
-    MALFORMED_FUNCTION_CALL = 'MALFORMED_FUNCTION_CALL'
-    IMAGE_SAFETY = 'IMAGE_SAFETY'
+    FINISH_REASON_UNSPECIFIED = "FINISH_REASON_UNSPECIFIED"
+    STOP = "STOP"
+    MAX_TOKENS = "MAX_TOKENS"
+    SAFETY = "SAFETY"
+    RECITATION = "RECITATION"
+    OTHER = "OTHER"
+    BLOCKLIST = "BLOCKLIST"
+    PROHIBITED_CONTENT = "PROHIBITED_CONTENT"
+    SPII = "SPII"
+    MALFORMED_FUNCTION_CALL = "MALFORMED_FUNCTION_CALL"
+    IMAGE_SAFETY = "IMAGE_SAFETY"
 
 class HarmProbability(_common.CaseInSensitiveEnum):
-    HARM_PROBABILITY_UNSPECIFIED = 'HARM_PROBABILITY_UNSPECIFIED'
-    NEGLIGIBLE = 'NEGLIGIBLE'
-    LOW = 'LOW'
-    MEDIUM = 'MEDIUM'
-    HIGH = 'HIGH'
+    HARM_PROBABILITY_UNSPECIFIED = "HARM_PROBABILITY_UNSPECIFIED"
+    NEGLIGIBLE = "NEGLIGIBLE"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
 
 class HarmSeverity(_common.CaseInSensitiveEnum):
-    HARM_SEVERITY_UNSPECIFIED = 'HARM_SEVERITY_UNSPECIFIED'
-    HARM_SEVERITY_NEGLIGIBLE = 'HARM_SEVERITY_NEGLIGIBLE'
-    HARM_SEVERITY_LOW = 'HARM_SEVERITY_LOW'
-    HARM_SEVERITY_MEDIUM = 'HARM_SEVERITY_MEDIUM'
-    HARM_SEVERITY_HIGH = 'HARM_SEVERITY_HIGH'
+    HARM_SEVERITY_UNSPECIFIED = "HARM_SEVERITY_UNSPECIFIED"
+    HARM_SEVERITY_NEGLIGIBLE = "HARM_SEVERITY_NEGLIGIBLE"
+    HARM_SEVERITY_LOW = "HARM_SEVERITY_LOW"
+    HARM_SEVERITY_MEDIUM = "HARM_SEVERITY_MEDIUM"
+    HARM_SEVERITY_HIGH = "HARM_SEVERITY_HIGH"
 
 class BlockedReason(_common.CaseInSensitiveEnum):
-    BLOCKED_REASON_UNSPECIFIED = 'BLOCKED_REASON_UNSPECIFIED'
-    SAFETY = 'SAFETY'
-    OTHER = 'OTHER'
-    BLOCKLIST = 'BLOCKLIST'
-    PROHIBITED_CONTENT = 'PROHIBITED_CONTENT'
+    BLOCKED_REASON_UNSPECIFIED = "BLOCKED_REASON_UNSPECIFIED"
+    SAFETY = "SAFETY"
+    OTHER = "OTHER"
+    BLOCKLIST = "BLOCKLIST"
+    PROHIBITED_CONTENT = "PROHIBITED_CONTENT"
 
 class Modality(_common.CaseInSensitiveEnum):
-    MODALITY_UNSPECIFIED = 'MODALITY_UNSPECIFIED'
-    TEXT = 'TEXT'
-    IMAGE = 'IMAGE'
-    AUDIO = 'AUDIO'
+    MODALITY_UNSPECIFIED = "MODALITY_UNSPECIFIED"
+    TEXT = "TEXT"
+    IMAGE = "IMAGE"
+    AUDIO = "AUDIO"
 
 class DeploymentResourcesType(_common.CaseInSensitiveEnum):
-    DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED = 'DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED'
-    DEDICATED_RESOURCES = 'DEDICATED_RESOURCES'
-    AUTOMATIC_RESOURCES = 'AUTOMATIC_RESOURCES'
-    SHARED_RESOURCES = 'SHARED_RESOURCES'
+    DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED = "DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED"
+    DEDICATED_RESOURCES = "DEDICATED_RESOURCES"
+    AUTOMATIC_RESOURCES = "AUTOMATIC_RESOURCES"
+    SHARED_RESOURCES = "SHARED_RESOURCES"
 
 class JobState(_common.CaseInSensitiveEnum):
-    JOB_STATE_UNSPECIFIED = 'JOB_STATE_UNSPECIFIED'
-    JOB_STATE_QUEUED = 'JOB_STATE_QUEUED'
-    JOB_STATE_PENDING = 'JOB_STATE_PENDING'
-    JOB_STATE_RUNNING = 'JOB_STATE_RUNNING'
-    JOB_STATE_SUCCEEDED = 'JOB_STATE_SUCCEEDED'
-    JOB_STATE_FAILED = 'JOB_STATE_FAILED'
-    JOB_STATE_CANCELLING = 'JOB_STATE_CANCELLING'
-    JOB_STATE_CANCELLED = 'JOB_STATE_CANCELLED'
-    JOB_STATE_PAUSED = 'JOB_STATE_PAUSED'
-    JOB_STATE_EXPIRED = 'JOB_STATE_EXPIRED'
-    JOB_STATE_UPDATING = 'JOB_STATE_UPDATING'
-    JOB_STATE_PARTIALLY_SUCCEEDED = 'JOB_STATE_PARTIALLY_SUCCEEDED'
+    JOB_STATE_UNSPECIFIED = "JOB_STATE_UNSPECIFIED"
+    JOB_STATE_QUEUED = "JOB_STATE_QUEUED"
+    JOB_STATE_PENDING = "JOB_STATE_PENDING"
+    JOB_STATE_RUNNING = "JOB_STATE_RUNNING"
+    JOB_STATE_SUCCEEDED = "JOB_STATE_SUCCEEDED"
+    JOB_STATE_FAILED = "JOB_STATE_FAILED"
+    JOB_STATE_CANCELLING = "JOB_STATE_CANCELLING"
+    JOB_STATE_CANCELLED = "JOB_STATE_CANCELLED"
+    JOB_STATE_PAUSED = "JOB_STATE_PAUSED"
+    JOB_STATE_EXPIRED = "JOB_STATE_EXPIRED"
+    JOB_STATE_UPDATING = "JOB_STATE_UPDATING"
+    JOB_STATE_PARTIALLY_SUCCEEDED = "JOB_STATE_PARTIALLY_SUCCEEDED"
 
 class AdapterSize(_common.CaseInSensitiveEnum):
-    ADAPTER_SIZE_UNSPECIFIED = 'ADAPTER_SIZE_UNSPECIFIED'
-    ADAPTER_SIZE_ONE = 'ADAPTER_SIZE_ONE'
-    ADAPTER_SIZE_FOUR = 'ADAPTER_SIZE_FOUR'
-    ADAPTER_SIZE_EIGHT = 'ADAPTER_SIZE_EIGHT'
-    ADAPTER_SIZE_SIXTEEN = 'ADAPTER_SIZE_SIXTEEN'
-    ADAPTER_SIZE_THIRTY_TWO = 'ADAPTER_SIZE_THIRTY_TWO'
+    ADAPTER_SIZE_UNSPECIFIED = "ADAPTER_SIZE_UNSPECIFIED"
+    ADAPTER_SIZE_ONE = "ADAPTER_SIZE_ONE"
+    ADAPTER_SIZE_FOUR = "ADAPTER_SIZE_FOUR"
+    ADAPTER_SIZE_EIGHT = "ADAPTER_SIZE_EIGHT"
+    ADAPTER_SIZE_SIXTEEN = "ADAPTER_SIZE_SIXTEEN"
+    ADAPTER_SIZE_THIRTY_TWO = "ADAPTER_SIZE_THIRTY_TWO"
 
 class DynamicRetrievalConfigMode(_common.CaseInSensitiveEnum):
-    MODE_UNSPECIFIED = 'MODE_UNSPECIFIED'
-    MODE_DYNAMIC = 'MODE_DYNAMIC'
+    MODE_UNSPECIFIED = "MODE_UNSPECIFIED"
+    MODE_DYNAMIC = "MODE_DYNAMIC"
 
 class FunctionCallingConfigMode(_common.CaseInSensitiveEnum):
-    MODE_UNSPECIFIED = 'MODE_UNSPECIFIED'
-    AUTO = 'AUTO'
-    ANY = 'ANY'
-    NONE = 'NONE'
+    MODE_UNSPECIFIED = "MODE_UNSPECIFIED"
+    AUTO = "AUTO"
+    ANY = "ANY"
+    NONE = "NONE"
 
 class MediaResolution(_common.CaseInSensitiveEnum):
-    MEDIA_RESOLUTION_UNSPECIFIED = 'MEDIA_RESOLUTION_UNSPECIFIED'
-    MEDIA_RESOLUTION_LOW = 'MEDIA_RESOLUTION_LOW'
-    MEDIA_RESOLUTION_MEDIUM = 'MEDIA_RESOLUTION_MEDIUM'
-    MEDIA_RESOLUTION_HIGH = 'MEDIA_RESOLUTION_HIGH'
+    MEDIA_RESOLUTION_UNSPECIFIED = "MEDIA_RESOLUTION_UNSPECIFIED"
+    MEDIA_RESOLUTION_LOW = "MEDIA_RESOLUTION_LOW"
+    MEDIA_RESOLUTION_MEDIUM = "MEDIA_RESOLUTION_MEDIUM"
+    MEDIA_RESOLUTION_HIGH = "MEDIA_RESOLUTION_HIGH"
 
 class SafetyFilterLevel(_common.CaseInSensitiveEnum):
-    BLOCK_LOW_AND_ABOVE = 'BLOCK_LOW_AND_ABOVE'
-    BLOCK_MEDIUM_AND_ABOVE = 'BLOCK_MEDIUM_AND_ABOVE'
-    BLOCK_ONLY_HIGH = 'BLOCK_ONLY_HIGH'
-    BLOCK_NONE = 'BLOCK_NONE'
+    BLOCK_LOW_AND_ABOVE = "BLOCK_LOW_AND_ABOVE"
+    BLOCK_MEDIUM_AND_ABOVE = "BLOCK_MEDIUM_AND_ABOVE"
+    BLOCK_ONLY_HIGH = "BLOCK_ONLY_HIGH"
+    BLOCK_NONE = "BLOCK_NONE"
 
 class PersonGeneration(_common.CaseInSensitiveEnum):
-    DONT_ALLOW = 'DONT_ALLOW'
-    ALLOW_ADULT = 'ALLOW_ADULT'
-    ALLOW_ALL = 'ALLOW_ALL'
+    DONT_ALLOW = "DONT_ALLOW"
+    ALLOW_ADULT = "ALLOW_ADULT"
+    ALLOW_ALL = "ALLOW_ALL"
 
 class ImagePromptLanguage(_common.CaseInSensitiveEnum):
-    auto = 'auto'
-    en = 'en'
-    ja = 'ja'
-    ko = 'ko'
-    hi = 'hi'
+    auto = "auto"
+    en = "en"
+    ja = "ja"
+    ko = "ko"
+    hi = "hi"
 
 class MaskReferenceMode(_common.CaseInSensitiveEnum):
-    MASK_MODE_DEFAULT = 'MASK_MODE_DEFAULT'
-    MASK_MODE_USER_PROVIDED = 'MASK_MODE_USER_PROVIDED'
-    MASK_MODE_BACKGROUND = 'MASK_MODE_BACKGROUND'
-    MASK_MODE_FOREGROUND = 'MASK_MODE_FOREGROUND'
-    MASK_MODE_SEMANTIC = 'MASK_MODE_SEMANTIC'
+    MASK_MODE_DEFAULT = "MASK_MODE_DEFAULT"
+    MASK_MODE_USER_PROVIDED = "MASK_MODE_USER_PROVIDED"
+    MASK_MODE_BACKGROUND = "MASK_MODE_BACKGROUND"
+    MASK_MODE_FOREGROUND = "MASK_MODE_FOREGROUND"
+    MASK_MODE_SEMANTIC = "MASK_MODE_SEMANTIC"
 
 class ControlReferenceType(_common.CaseInSensitiveEnum):
-    CONTROL_TYPE_DEFAULT = 'CONTROL_TYPE_DEFAULT'
-    CONTROL_TYPE_CANNY = 'CONTROL_TYPE_CANNY'
-    CONTROL_TYPE_SCRIBBLE = 'CONTROL_TYPE_SCRIBBLE'
-    CONTROL_TYPE_FACE_MESH = 'CONTROL_TYPE_FACE_MESH'
+    CONTROL_TYPE_DEFAULT = "CONTROL_TYPE_DEFAULT"
+    CONTROL_TYPE_CANNY = "CONTROL_TYPE_CANNY"
+    CONTROL_TYPE_SCRIBBLE = "CONTROL_TYPE_SCRIBBLE"
+    CONTROL_TYPE_FACE_MESH = "CONTROL_TYPE_FACE_MESH"
 
 class SubjectReferenceType(_common.CaseInSensitiveEnum):
-    SUBJECT_TYPE_DEFAULT = 'SUBJECT_TYPE_DEFAULT'
-    SUBJECT_TYPE_PERSON = 'SUBJECT_TYPE_PERSON'
-    SUBJECT_TYPE_ANIMAL = 'SUBJECT_TYPE_ANIMAL'
-    SUBJECT_TYPE_PRODUCT = 'SUBJECT_TYPE_PRODUCT'
+    SUBJECT_TYPE_DEFAULT = "SUBJECT_TYPE_DEFAULT"
+    SUBJECT_TYPE_PERSON = "SUBJECT_TYPE_PERSON"
+    SUBJECT_TYPE_ANIMAL = "SUBJECT_TYPE_ANIMAL"
+    SUBJECT_TYPE_PRODUCT = "SUBJECT_TYPE_PRODUCT"
 
 class EditMode(_common.CaseInSensitiveEnum):
-    EDIT_MODE_DEFAULT = 'EDIT_MODE_DEFAULT'
-    EDIT_MODE_INPAINT_REMOVAL = 'EDIT_MODE_INPAINT_REMOVAL'
-    EDIT_MODE_INPAINT_INSERTION = 'EDIT_MODE_INPAINT_INSERTION'
-    EDIT_MODE_OUTPAINT = 'EDIT_MODE_OUTPAINT'
-    EDIT_MODE_CONTROLLED_EDITING = 'EDIT_MODE_CONTROLLED_EDITING'
-    EDIT_MODE_STYLE = 'EDIT_MODE_STYLE'
-    EDIT_MODE_BGSWAP = 'EDIT_MODE_BGSWAP'
-    EDIT_MODE_PRODUCT_IMAGE = 'EDIT_MODE_PRODUCT_IMAGE'
+    EDIT_MODE_DEFAULT = "EDIT_MODE_DEFAULT"
+    EDIT_MODE_INPAINT_REMOVAL = "EDIT_MODE_INPAINT_REMOVAL"
+    EDIT_MODE_INPAINT_INSERTION = "EDIT_MODE_INPAINT_INSERTION"
+    EDIT_MODE_OUTPAINT = "EDIT_MODE_OUTPAINT"
+    EDIT_MODE_CONTROLLED_EDITING = "EDIT_MODE_CONTROLLED_EDITING"
+    EDIT_MODE_STYLE = "EDIT_MODE_STYLE"
+    EDIT_MODE_BGSWAP = "EDIT_MODE_BGSWAP"
+    EDIT_MODE_PRODUCT_IMAGE = "EDIT_MODE_PRODUCT_IMAGE"
 
 class FileState(_common.CaseInSensitiveEnum):
-    STATE_UNSPECIFIED = 'STATE_UNSPECIFIED'
-    PROCESSING = 'PROCESSING'
-    ACTIVE = 'ACTIVE'
-    FAILED = 'FAILED'
+    STATE_UNSPECIFIED = "STATE_UNSPECIFIED"
+    PROCESSING = "PROCESSING"
+    ACTIVE = "ACTIVE"
+    FAILED = "FAILED"
 
 class FileSource(_common.CaseInSensitiveEnum):
-    SOURCE_UNSPECIFIED = 'SOURCE_UNSPECIFIED'
-    UPLOADED = 'UPLOADED'
-    GENERATED = 'GENERATED'
+    SOURCE_UNSPECIFIED = "SOURCE_UNSPECIFIED"
+    UPLOADED = "UPLOADED"
+    GENERATED = "GENERATED"
 
 class MediaModality(_common.CaseInSensitiveEnum):
-    MODALITY_UNSPECIFIED = 'MODALITY_UNSPECIFIED'
-    TEXT = 'TEXT'
-    IMAGE = 'IMAGE'
-    VIDEO = 'VIDEO'
-    AUDIO = 'AUDIO'
-    DOCUMENT = 'DOCUMENT'
+    MODALITY_UNSPECIFIED = "MODALITY_UNSPECIFIED"
+    TEXT = "TEXT"
+    IMAGE = "IMAGE"
+    VIDEO = "VIDEO"
+    AUDIO = "AUDIO"
+    DOCUMENT = "DOCUMENT"
 
 class VideoMetadata(_common.BaseModel):
     end_offset: str | None
@@ -219,6 +223,7 @@ class VideoMetadata(_common.BaseModel):
 class VideoMetadataDict(TypedDict, total=False):
     end_offset: str | None
     start_offset: str | None
+
 VideoMetadataOrDict = VideoMetadata | VideoMetadataDict
 
 class CodeExecutionResult(_common.BaseModel):
@@ -228,6 +233,7 @@ class CodeExecutionResult(_common.BaseModel):
 class CodeExecutionResultDict(TypedDict, total=False):
     outcome: Outcome | None
     output: str | None
+
 CodeExecutionResultOrDict = CodeExecutionResult | CodeExecutionResultDict
 
 class ExecutableCode(_common.BaseModel):
@@ -237,6 +243,7 @@ class ExecutableCode(_common.BaseModel):
 class ExecutableCodeDict(TypedDict, total=False):
     code: str | None
     language: Language | None
+
 ExecutableCodeOrDict = ExecutableCode | ExecutableCodeDict
 
 class FileData(_common.BaseModel):
@@ -246,6 +253,7 @@ class FileData(_common.BaseModel):
 class FileDataDict(TypedDict, total=False):
     file_uri: str | None
     mime_type: str | None
+
 FileDataOrDict = FileData | FileDataDict
 
 class FunctionCall(_common.BaseModel):
@@ -257,6 +265,7 @@ class FunctionCallDict(TypedDict, total=False):
     id: str | None
     args: dict[str, Any] | None
     name: str | None
+
 FunctionCallOrDict = FunctionCall | FunctionCallDict
 
 class FunctionResponse(_common.BaseModel):
@@ -268,6 +277,7 @@ class FunctionResponseDict(TypedDict, total=False):
     id: str | None
     name: str | None
     response: dict[str, Any] | None
+
 FunctionResponseOrDict = FunctionResponse | FunctionResponseDict
 
 class Blob(_common.BaseModel):
@@ -277,6 +287,7 @@ class Blob(_common.BaseModel):
 class BlobDict(TypedDict, total=False):
     data: bytes | None
     mime_type: str | None
+
 BlobOrDict = Blob | BlobDict
 
 class Part(_common.BaseModel):
@@ -316,6 +327,7 @@ class PartDict(TypedDict, total=False):
     function_response: FunctionResponseDict | None
     inline_data: BlobDict | None
     text: str | None
+
 PartOrDict = Part | PartDict
 
 class Content(_common.BaseModel):
@@ -323,18 +335,19 @@ class Content(_common.BaseModel):
     role: str | None
 
 class UserContent(Content):
-    role: Literal['user']
+    role: Literal["user"]
     parts: list[Part]
-    def __init__(self, parts: PartUnionDict | list['PartUnionDict'] | list['Part']) -> None: ...
+    def __init__(self, parts: PartUnionDict | list["PartUnionDict"] | list["Part"]) -> None: ...
 
 class ModelContent(Content):
-    role: Literal['model']
+    role: Literal["model"]
     parts: list[Part]
-    def __init__(self, parts: PartUnionDict | list['PartUnionDict'] | list['Part']) -> None: ...
+    def __init__(self, parts: PartUnionDict | list["PartUnionDict"] | list["Part"]) -> None: ...
 
 class ContentDict(TypedDict, total=False):
     parts: list[PartDict] | None
     role: str | None
+
 ContentOrDict = Content | ContentDict
 
 class HttpOptions(_common.BaseModel):
@@ -348,6 +361,7 @@ class HttpOptionsDict(TypedDict, total=False):
     api_version: str | None
     headers: dict[str, str] | None
     timeout: int | None
+
 HttpOptionsOrDict = HttpOptions | HttpOptionsDict
 
 class Schema(_common.BaseModel):
@@ -358,7 +372,7 @@ class Schema(_common.BaseModel):
     min_length: int | None
     min_properties: int | None
     max_properties: int | None
-    any_of: list['Schema'] | None
+    any_of: list["Schema"] | None
     description: str | None
     enum: list[str] | None
     format: str | None
@@ -368,7 +382,7 @@ class Schema(_common.BaseModel):
     min_items: int | None
     minimum: float | None
     nullable: bool | None
-    properties: dict[str, 'Schema'] | None
+    properties: dict[str, "Schema"] | None
     property_ordering: list[str] | None
     required: list[str] | None
     title: str | None
@@ -382,7 +396,7 @@ class SchemaDict(TypedDict, total=False):
     min_length: int | None
     min_properties: int | None
     max_properties: int | None
-    any_of: list['SchemaDict'] | None
+    any_of: list["SchemaDict"] | None
     description: str | None
     enum: list[str] | None
     format: str | None
@@ -392,11 +406,12 @@ class SchemaDict(TypedDict, total=False):
     min_items: int | None
     minimum: float | None
     nullable: bool | None
-    properties: dict[str, 'SchemaDict'] | None
+    properties: dict[str, "SchemaDict"] | None
     property_ordering: list[str] | None
     required: list[str] | None
     title: str | None
     type: Type | None
+
 SchemaOrDict = Schema | SchemaDict
 
 class SafetySetting(_common.BaseModel):
@@ -408,6 +423,7 @@ class SafetySettingDict(TypedDict, total=False):
     method: HarmBlockMethod | None
     category: HarmCategory | None
     threshold: HarmBlockThreshold | None
+
 SafetySettingOrDict = SafetySetting | SafetySettingDict
 
 class FunctionDeclaration(_common.BaseModel):
@@ -416,7 +432,9 @@ class FunctionDeclaration(_common.BaseModel):
     name: str | None
     parameters: Schema | None
     @classmethod
-    def from_callable_with_api_option(cls, *, callable: Callable, api_option: Literal['VERTEX_AI', 'GEMINI_API'] = 'GEMINI_API') -> FunctionDeclaration: ...
+    def from_callable_with_api_option(
+        cls, *, callable: Callable, api_option: Literal["VERTEX_AI", "GEMINI_API"] = "GEMINI_API"
+    ) -> FunctionDeclaration: ...
     @classmethod
     def from_callable(cls, *, client, callable: Callable) -> FunctionDeclaration: ...
 
@@ -425,10 +443,12 @@ class FunctionDeclarationDict(TypedDict, total=False):
     description: str | None
     name: str | None
     parameters: SchemaDict | None
+
 FunctionDeclarationOrDict = FunctionDeclaration | FunctionDeclarationDict
 
 class GoogleSearch(_common.BaseModel): ...
 class GoogleSearchDict(TypedDict, total=False): ...
+
 GoogleSearchOrDict = GoogleSearch | GoogleSearchDict
 
 class DynamicRetrievalConfig(_common.BaseModel):
@@ -438,6 +458,7 @@ class DynamicRetrievalConfig(_common.BaseModel):
 class DynamicRetrievalConfigDict(TypedDict, total=False):
     mode: DynamicRetrievalConfigMode | None
     dynamic_threshold: float | None
+
 DynamicRetrievalConfigOrDict = DynamicRetrievalConfig | DynamicRetrievalConfigDict
 
 class GoogleSearchRetrieval(_common.BaseModel):
@@ -445,6 +466,7 @@ class GoogleSearchRetrieval(_common.BaseModel):
 
 class GoogleSearchRetrievalDict(TypedDict, total=False):
     dynamic_retrieval_config: DynamicRetrievalConfigDict | None
+
 GoogleSearchRetrievalOrDict = GoogleSearchRetrieval | GoogleSearchRetrievalDict
 
 class VertexAISearch(_common.BaseModel):
@@ -454,6 +476,7 @@ class VertexAISearch(_common.BaseModel):
 class VertexAISearchDict(TypedDict, total=False):
     datastore: str | None
     engine: str | None
+
 VertexAISearchOrDict = VertexAISearch | VertexAISearchDict
 
 class VertexRagStoreRagResource(_common.BaseModel):
@@ -463,6 +486,7 @@ class VertexRagStoreRagResource(_common.BaseModel):
 class VertexRagStoreRagResourceDict(TypedDict, total=False):
     rag_corpus: str | None
     rag_file_ids: list[str] | None
+
 VertexRagStoreRagResourceOrDict = VertexRagStoreRagResource | VertexRagStoreRagResourceDict
 
 class VertexRagStore(_common.BaseModel):
@@ -476,6 +500,7 @@ class VertexRagStoreDict(TypedDict, total=False):
     rag_resources: list[VertexRagStoreRagResourceDict] | None
     similarity_top_k: int | None
     vector_distance_threshold: float | None
+
 VertexRagStoreOrDict = VertexRagStore | VertexRagStoreDict
 
 class Retrieval(_common.BaseModel):
@@ -487,10 +512,12 @@ class RetrievalDict(TypedDict, total=False):
     disable_attribution: bool | None
     vertex_ai_search: VertexAISearchDict | None
     vertex_rag_store: VertexRagStoreDict | None
+
 RetrievalOrDict = Retrieval | RetrievalDict
 
 class ToolCodeExecution(_common.BaseModel): ...
 class ToolCodeExecutionDict(TypedDict, total=False): ...
+
 ToolCodeExecutionOrDict = ToolCodeExecution | ToolCodeExecutionDict
 
 class Tool(_common.BaseModel):
@@ -506,6 +533,7 @@ class ToolDict(TypedDict, total=False):
     google_search: GoogleSearchDict | None
     google_search_retrieval: GoogleSearchRetrievalDict | None
     code_execution: ToolCodeExecutionDict | None
+
 ToolOrDict = Tool | ToolDict
 ToolListUnion = list[Tool | Callable]
 ToolListUnionDict = list[ToolDict | Callable]
@@ -517,6 +545,7 @@ class FunctionCallingConfig(_common.BaseModel):
 class FunctionCallingConfigDict(TypedDict, total=False):
     mode: FunctionCallingConfigMode | None
     allowed_function_names: list[str] | None
+
 FunctionCallingConfigOrDict = FunctionCallingConfig | FunctionCallingConfigDict
 
 class ToolConfig(_common.BaseModel):
@@ -524,6 +553,7 @@ class ToolConfig(_common.BaseModel):
 
 class ToolConfigDict(TypedDict, total=False):
     function_calling_config: FunctionCallingConfigDict | None
+
 ToolConfigOrDict = ToolConfig | ToolConfigDict
 
 class PrebuiltVoiceConfig(_common.BaseModel):
@@ -531,6 +561,7 @@ class PrebuiltVoiceConfig(_common.BaseModel):
 
 class PrebuiltVoiceConfigDict(TypedDict, total=False):
     voice_name: str | None
+
 PrebuiltVoiceConfigOrDict = PrebuiltVoiceConfig | PrebuiltVoiceConfigDict
 
 class VoiceConfig(_common.BaseModel):
@@ -538,6 +569,7 @@ class VoiceConfig(_common.BaseModel):
 
 class VoiceConfigDict(TypedDict, total=False):
     prebuilt_voice_config: PrebuiltVoiceConfigDict | None
+
 VoiceConfigOrDict = VoiceConfig | VoiceConfigDict
 
 class SpeechConfig(_common.BaseModel):
@@ -545,6 +577,7 @@ class SpeechConfig(_common.BaseModel):
 
 class SpeechConfigDict(TypedDict, total=False):
     voice_config: VoiceConfigDict | None
+
 SpeechConfigOrDict = SpeechConfig | SpeechConfigDict
 
 class AutomaticFunctionCallingConfig(_common.BaseModel):
@@ -556,6 +589,7 @@ class AutomaticFunctionCallingConfigDict(TypedDict, total=False):
     disable: bool | None
     maximum_remote_calls: int | None
     ignore_call_history: bool | None
+
 AutomaticFunctionCallingConfigOrDict = AutomaticFunctionCallingConfig | AutomaticFunctionCallingConfigDict
 
 class ThinkingConfig(_common.BaseModel):
@@ -563,6 +597,7 @@ class ThinkingConfig(_common.BaseModel):
 
 class ThinkingConfigDict(TypedDict, total=False):
     include_thoughts: bool | None
+
 ThinkingConfigOrDict = ThinkingConfig | ThinkingConfigDict
 
 class FileStatus(_common.BaseModel):
@@ -574,6 +609,7 @@ class FileStatusDict(TypedDict, total=False):
     details: list[dict[str, Any]] | None
     message: str | None
     code: int | None
+
 FileStatusOrDict = FileStatus | FileStatusDict
 
 class File(_common.BaseModel):
@@ -607,6 +643,7 @@ class FileDict(TypedDict, total=False):
     source: FileSource | None
     video_metadata: dict[str, Any] | None
     error: FileStatusDict | None
+
 FileOrDict = File | FileDict
 PartUnion = File | Part | PIL_Image | str
 PartUnion = File | Part | str
@@ -617,18 +654,24 @@ SchemaUnion = dict | type | Schema | builtin_types.GenericAlias | VersionedUnion
 SchemaUnionDict = SchemaUnion | SchemaDict
 
 class GenerationConfigRoutingConfigAutoRoutingMode(_common.BaseModel):
-    model_routing_preference: Literal['UNKNOWN', 'PRIORITIZE_QUALITY', 'BALANCED', 'PRIORITIZE_COST'] | None
+    model_routing_preference: Literal["UNKNOWN", "PRIORITIZE_QUALITY", "BALANCED", "PRIORITIZE_COST"] | None
 
 class GenerationConfigRoutingConfigAutoRoutingModeDict(TypedDict, total=False):
-    model_routing_preference: Literal['UNKNOWN', 'PRIORITIZE_QUALITY', 'BALANCED', 'PRIORITIZE_COST'] | None
-GenerationConfigRoutingConfigAutoRoutingModeOrDict = GenerationConfigRoutingConfigAutoRoutingMode | GenerationConfigRoutingConfigAutoRoutingModeDict
+    model_routing_preference: Literal["UNKNOWN", "PRIORITIZE_QUALITY", "BALANCED", "PRIORITIZE_COST"] | None
+
+GenerationConfigRoutingConfigAutoRoutingModeOrDict = (
+    GenerationConfigRoutingConfigAutoRoutingMode | GenerationConfigRoutingConfigAutoRoutingModeDict
+)
 
 class GenerationConfigRoutingConfigManualRoutingMode(_common.BaseModel):
     model_name: str | None
 
 class GenerationConfigRoutingConfigManualRoutingModeDict(TypedDict, total=False):
     model_name: str | None
-GenerationConfigRoutingConfigManualRoutingModeOrDict = GenerationConfigRoutingConfigManualRoutingMode | GenerationConfigRoutingConfigManualRoutingModeDict
+
+GenerationConfigRoutingConfigManualRoutingModeOrDict = (
+    GenerationConfigRoutingConfigManualRoutingMode | GenerationConfigRoutingConfigManualRoutingModeDict
+)
 
 class GenerationConfigRoutingConfig(_common.BaseModel):
     auto_mode: GenerationConfigRoutingConfigAutoRoutingMode | None
@@ -637,6 +680,7 @@ class GenerationConfigRoutingConfig(_common.BaseModel):
 class GenerationConfigRoutingConfigDict(TypedDict, total=False):
     auto_mode: GenerationConfigRoutingConfigAutoRoutingModeDict | None
     manual_mode: GenerationConfigRoutingConfigManualRoutingModeDict | None
+
 GenerationConfigRoutingConfigOrDict = GenerationConfigRoutingConfig | GenerationConfigRoutingConfigDict
 SpeechConfigUnion = SpeechConfig | str
 SpeechConfigUnionDict = SpeechConfigUnion | SpeechConfigDict
@@ -698,6 +742,7 @@ class GenerateContentConfigDict(TypedDict, total=False):
     audio_timestamp: bool | None
     automatic_function_calling: AutomaticFunctionCallingConfigDict | None
     thinking_config: ThinkingConfigDict | None
+
 GenerateContentConfigOrDict = GenerateContentConfig | GenerateContentConfigDict
 ContentListUnion = list[ContentUnion] | ContentUnion
 ContentListUnionDict = list[ContentUnionDict] | ContentUnionDict
@@ -721,6 +766,7 @@ class GoogleTypeDateDict(TypedDict, total=False):
     day: int | None
     month: int | None
     year: int | None
+
 GoogleTypeDateOrDict = GoogleTypeDate | GoogleTypeDateDict
 
 class Citation(_common.BaseModel):
@@ -738,6 +784,7 @@ class CitationDict(TypedDict, total=False):
     start_index: int | None
     title: str | None
     uri: str | None
+
 CitationOrDict = Citation | CitationDict
 
 class CitationMetadata(_common.BaseModel):
@@ -745,6 +792,7 @@ class CitationMetadata(_common.BaseModel):
 
 class CitationMetadataDict(TypedDict, total=False):
     citations: list[CitationDict] | None
+
 CitationMetadataOrDict = CitationMetadata | CitationMetadataDict
 
 class GroundingChunkRetrievedContext(_common.BaseModel):
@@ -756,6 +804,7 @@ class GroundingChunkRetrievedContextDict(TypedDict, total=False):
     text: str | None
     title: str | None
     uri: str | None
+
 GroundingChunkRetrievedContextOrDict = GroundingChunkRetrievedContext | GroundingChunkRetrievedContextDict
 
 class GroundingChunkWeb(_common.BaseModel):
@@ -765,6 +814,7 @@ class GroundingChunkWeb(_common.BaseModel):
 class GroundingChunkWebDict(TypedDict, total=False):
     title: str | None
     uri: str | None
+
 GroundingChunkWebOrDict = GroundingChunkWeb | GroundingChunkWebDict
 
 class GroundingChunk(_common.BaseModel):
@@ -774,6 +824,7 @@ class GroundingChunk(_common.BaseModel):
 class GroundingChunkDict(TypedDict, total=False):
     retrieved_context: GroundingChunkRetrievedContextDict | None
     web: GroundingChunkWebDict | None
+
 GroundingChunkOrDict = GroundingChunk | GroundingChunkDict
 
 class Segment(_common.BaseModel):
@@ -787,6 +838,7 @@ class SegmentDict(TypedDict, total=False):
     part_index: int | None
     start_index: int | None
     text: str | None
+
 SegmentOrDict = Segment | SegmentDict
 
 class GroundingSupport(_common.BaseModel):
@@ -798,6 +850,7 @@ class GroundingSupportDict(TypedDict, total=False):
     confidence_scores: list[float] | None
     grounding_chunk_indices: list[int] | None
     segment: SegmentDict | None
+
 GroundingSupportOrDict = GroundingSupport | GroundingSupportDict
 
 class RetrievalMetadata(_common.BaseModel):
@@ -805,6 +858,7 @@ class RetrievalMetadata(_common.BaseModel):
 
 class RetrievalMetadataDict(TypedDict, total=False):
     google_search_dynamic_retrieval_score: float | None
+
 RetrievalMetadataOrDict = RetrievalMetadata | RetrievalMetadataDict
 
 class SearchEntryPoint(_common.BaseModel):
@@ -814,6 +868,7 @@ class SearchEntryPoint(_common.BaseModel):
 class SearchEntryPointDict(TypedDict, total=False):
     rendered_content: str | None
     sdk_blob: bytes | None
+
 SearchEntryPointOrDict = SearchEntryPoint | SearchEntryPointDict
 
 class GroundingMetadata(_common.BaseModel):
@@ -831,6 +886,7 @@ class GroundingMetadataDict(TypedDict, total=False):
     retrieval_queries: list[str] | None
     search_entry_point: SearchEntryPointDict | None
     web_search_queries: list[str] | None
+
 GroundingMetadataOrDict = GroundingMetadata | GroundingMetadataDict
 
 class LogprobsResultCandidate(_common.BaseModel):
@@ -842,6 +898,7 @@ class LogprobsResultCandidateDict(TypedDict, total=False):
     log_probability: float | None
     token: str | None
     token_id: int | None
+
 LogprobsResultCandidateOrDict = LogprobsResultCandidate | LogprobsResultCandidateDict
 
 class LogprobsResultTopCandidates(_common.BaseModel):
@@ -849,6 +906,7 @@ class LogprobsResultTopCandidates(_common.BaseModel):
 
 class LogprobsResultTopCandidatesDict(TypedDict, total=False):
     candidates: list[LogprobsResultCandidateDict] | None
+
 LogprobsResultTopCandidatesOrDict = LogprobsResultTopCandidates | LogprobsResultTopCandidatesDict
 
 class LogprobsResult(_common.BaseModel):
@@ -858,6 +916,7 @@ class LogprobsResult(_common.BaseModel):
 class LogprobsResultDict(TypedDict, total=False):
     chosen_candidates: list[LogprobsResultCandidateDict] | None
     top_candidates: list[LogprobsResultTopCandidatesDict] | None
+
 LogprobsResultOrDict = LogprobsResult | LogprobsResultDict
 
 class SafetyRating(_common.BaseModel):
@@ -875,6 +934,7 @@ class SafetyRatingDict(TypedDict, total=False):
     probability_score: float | None
     severity: HarmSeverity | None
     severity_score: float | None
+
 SafetyRatingOrDict = SafetyRating | SafetyRatingDict
 
 class Candidate(_common.BaseModel):
@@ -900,6 +960,7 @@ class CandidateDict(TypedDict, total=False):
     index: int | None
     logprobs_result: LogprobsResultDict | None
     safety_ratings: list[SafetyRatingDict] | None
+
 CandidateOrDict = Candidate | CandidateDict
 
 class GenerateContentResponsePromptFeedback(_common.BaseModel):
@@ -911,7 +972,10 @@ class GenerateContentResponsePromptFeedbackDict(TypedDict, total=False):
     block_reason: BlockedReason | None
     block_reason_message: str | None
     safety_ratings: list[SafetyRatingDict] | None
-GenerateContentResponsePromptFeedbackOrDict = GenerateContentResponsePromptFeedback | GenerateContentResponsePromptFeedbackDict
+
+GenerateContentResponsePromptFeedbackOrDict = (
+    GenerateContentResponsePromptFeedback | GenerateContentResponsePromptFeedbackDict
+)
 
 class ModalityTokenCount(_common.BaseModel):
     modality: MediaModality | None
@@ -920,6 +984,7 @@ class ModalityTokenCount(_common.BaseModel):
 class ModalityTokenCountDict(TypedDict, total=False):
     modality: MediaModality | None
     token_count: int | None
+
 ModalityTokenCountOrDict = ModalityTokenCount | ModalityTokenCountDict
 
 class GenerateContentResponseUsageMetadata(_common.BaseModel):
@@ -945,7 +1010,10 @@ class GenerateContentResponseUsageMetadataDict(TypedDict, total=False):
     tool_use_prompt_token_count: int | None
     tool_use_prompt_tokens_details: list[ModalityTokenCountDict] | None
     total_token_count: int | None
-GenerateContentResponseUsageMetadataOrDict = GenerateContentResponseUsageMetadata | GenerateContentResponseUsageMetadataDict
+
+GenerateContentResponseUsageMetadataOrDict = (
+    GenerateContentResponseUsageMetadata | GenerateContentResponseUsageMetadataDict
+)
 
 class GenerateContentResponse(_common.BaseModel):
     candidates: list[Candidate] | None
@@ -972,6 +1040,7 @@ class GenerateContentResponseDict(TypedDict, total=False):
     model_version: str | None
     prompt_feedback: GenerateContentResponsePromptFeedbackDict | None
     usage_metadata: GenerateContentResponseUsageMetadataDict | None
+
 GenerateContentResponseOrDict = GenerateContentResponse | GenerateContentResponseDict
 
 class EmbedContentConfig(_common.BaseModel):
@@ -989,6 +1058,7 @@ class EmbedContentConfigDict(TypedDict, total=False):
     output_dimensionality: int | None
     mime_type: str | None
     auto_truncate: bool | None
+
 EmbedContentConfigOrDict = EmbedContentConfig | EmbedContentConfigDict
 
 class _EmbedContentParameters(_common.BaseModel):
@@ -1008,6 +1078,7 @@ class ContentEmbeddingStatistics(_common.BaseModel):
 class ContentEmbeddingStatisticsDict(TypedDict, total=False):
     truncated: bool | None
     token_count: float | None
+
 ContentEmbeddingStatisticsOrDict = ContentEmbeddingStatistics | ContentEmbeddingStatisticsDict
 
 class ContentEmbedding(_common.BaseModel):
@@ -1017,6 +1088,7 @@ class ContentEmbedding(_common.BaseModel):
 class ContentEmbeddingDict(TypedDict, total=False):
     values: list[float] | None
     statistics: ContentEmbeddingStatisticsDict | None
+
 ContentEmbeddingOrDict = ContentEmbedding | ContentEmbeddingDict
 
 class EmbedContentMetadata(_common.BaseModel):
@@ -1024,6 +1096,7 @@ class EmbedContentMetadata(_common.BaseModel):
 
 class EmbedContentMetadataDict(TypedDict, total=False):
     billable_character_count: int | None
+
 EmbedContentMetadataOrDict = EmbedContentMetadata | EmbedContentMetadataDict
 
 class EmbedContentResponse(_common.BaseModel):
@@ -1033,6 +1106,7 @@ class EmbedContentResponse(_common.BaseModel):
 class EmbedContentResponseDict(TypedDict, total=False):
     embeddings: list[ContentEmbeddingDict] | None
     metadata: EmbedContentMetadataDict | None
+
 EmbedContentResponseOrDict = EmbedContentResponse | EmbedContentResponseDict
 
 class GenerateImagesConfig(_common.BaseModel):
@@ -1070,6 +1144,7 @@ class GenerateImagesConfigDict(TypedDict, total=False):
     output_compression_quality: int | None
     add_watermark: bool | None
     enhance_prompt: bool | None
+
 GenerateImagesConfigOrDict = GenerateImagesConfig | GenerateImagesConfigDict
 
 class _GenerateImagesParameters(_common.BaseModel):
@@ -1102,6 +1177,7 @@ class ImageDict(TypedDict, total=False):
     gcs_uri: str | None
     image_bytes: bytes | None
     mime_type: str | None
+
 ImageOrDict = Image | ImageDict
 
 class SafetyAttributes(_common.BaseModel):
@@ -1113,6 +1189,7 @@ class SafetyAttributesDict(TypedDict, total=False):
     categories: list[str] | None
     scores: list[float] | None
     content_type: str | None
+
 SafetyAttributesOrDict = SafetyAttributes | SafetyAttributesDict
 
 class GeneratedImage(_common.BaseModel):
@@ -1126,6 +1203,7 @@ class GeneratedImageDict(TypedDict, total=False):
     rai_filtered_reason: str | None
     safety_attributes: SafetyAttributesDict | None
     enhanced_prompt: str | None
+
 GeneratedImageOrDict = GeneratedImage | GeneratedImageDict
 
 class GenerateImagesResponse(_common.BaseModel):
@@ -1135,6 +1213,7 @@ class GenerateImagesResponse(_common.BaseModel):
 class GenerateImagesResponseDict(TypedDict, total=False):
     generated_images: list[GeneratedImageDict] | None
     positive_prompt_safety_attributes: SafetyAttributesDict | None
+
 GenerateImagesResponseOrDict = GenerateImagesResponse | GenerateImagesResponseDict
 
 class MaskReferenceConfig(_common.BaseModel):
@@ -1146,6 +1225,7 @@ class MaskReferenceConfigDict(TypedDict, total=False):
     mask_mode: MaskReferenceMode | None
     segmentation_classes: list[int] | None
     mask_dilation: float | None
+
 MaskReferenceConfigOrDict = MaskReferenceConfig | MaskReferenceConfigDict
 
 class ControlReferenceConfig(_common.BaseModel):
@@ -1155,6 +1235,7 @@ class ControlReferenceConfig(_common.BaseModel):
 class ControlReferenceConfigDict(TypedDict, total=False):
     control_type: ControlReferenceType | None
     enable_control_image_computation: bool | None
+
 ControlReferenceConfigOrDict = ControlReferenceConfig | ControlReferenceConfigDict
 
 class StyleReferenceConfig(_common.BaseModel):
@@ -1162,6 +1243,7 @@ class StyleReferenceConfig(_common.BaseModel):
 
 class StyleReferenceConfigDict(TypedDict, total=False):
     style_description: str | None
+
 StyleReferenceConfigOrDict = StyleReferenceConfig | StyleReferenceConfigDict
 
 class SubjectReferenceConfig(_common.BaseModel):
@@ -1171,6 +1253,7 @@ class SubjectReferenceConfig(_common.BaseModel):
 class SubjectReferenceConfigDict(TypedDict, total=False):
     subject_type: SubjectReferenceType | None
     subject_description: str | None
+
 SubjectReferenceConfigOrDict = SubjectReferenceConfig | SubjectReferenceConfigDict
 
 class _ReferenceImageAPI(_common.BaseModel):
@@ -1226,6 +1309,7 @@ class EditImageConfigDict(TypedDict, total=False):
     output_compression_quality: int | None
     edit_mode: EditMode | None
     base_steps: int | None
+
 EditImageConfigOrDict = EditImageConfig | EditImageConfigDict
 
 class _EditImageParameters(_common.BaseModel):
@@ -1245,6 +1329,7 @@ class EditImageResponse(_common.BaseModel):
 
 class EditImageResponseDict(TypedDict, total=False):
     generated_images: list[GeneratedImageDict] | None
+
 EditImageResponseOrDict = EditImageResponse | EditImageResponseDict
 
 class _UpscaleImageAPIConfig(_common.BaseModel):
@@ -1280,6 +1365,7 @@ class UpscaleImageResponse(_common.BaseModel):
 
 class UpscaleImageResponseDict(TypedDict, total=False):
     generated_images: list[GeneratedImageDict] | None
+
 UpscaleImageResponseOrDict = UpscaleImageResponse | UpscaleImageResponseDict
 
 class GetModelConfig(_common.BaseModel):
@@ -1287,6 +1373,7 @@ class GetModelConfig(_common.BaseModel):
 
 class GetModelConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetModelConfigOrDict = GetModelConfig | GetModelConfigDict
 
 class _GetModelParameters(_common.BaseModel):
@@ -1304,6 +1391,7 @@ class Endpoint(_common.BaseModel):
 class EndpointDict(TypedDict, total=False):
     name: str | None
     deployed_model_id: str | None
+
 EndpointOrDict = Endpoint | EndpointDict
 
 class TunedModelInfo(_common.BaseModel):
@@ -1315,6 +1403,7 @@ class TunedModelInfoDict(TypedDict, total=False):
     base_model: str | None
     create_time: datetime.datetime | None
     update_time: datetime.datetime | None
+
 TunedModelInfoOrDict = TunedModelInfo | TunedModelInfoDict
 
 class Model(_common.BaseModel):
@@ -1340,6 +1429,7 @@ class ModelDict(TypedDict, total=False):
     input_token_limit: int | None
     output_token_limit: int | None
     supported_actions: list[str] | None
+
 ModelOrDict = Model | ModelDict
 
 class ListModelsConfig(_common.BaseModel):
@@ -1355,6 +1445,7 @@ class ListModelsConfigDict(TypedDict, total=False):
     page_token: str | None
     filter: str | None
     query_base: bool | None
+
 ListModelsConfigOrDict = ListModelsConfig | ListModelsConfigDict
 
 class _ListModelsParameters(_common.BaseModel):
@@ -1370,6 +1461,7 @@ class ListModelsResponse(_common.BaseModel):
 class ListModelsResponseDict(TypedDict, total=False):
     next_page_token: str | None
     models: list[ModelDict] | None
+
 ListModelsResponseOrDict = ListModelsResponse | ListModelsResponseDict
 
 class UpdateModelConfig(_common.BaseModel):
@@ -1381,6 +1473,7 @@ class UpdateModelConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
     display_name: str | None
     description: str | None
+
 UpdateModelConfigOrDict = UpdateModelConfig | UpdateModelConfigDict
 
 class _UpdateModelParameters(_common.BaseModel):
@@ -1396,6 +1489,7 @@ class DeleteModelConfig(_common.BaseModel):
 
 class DeleteModelConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 DeleteModelConfigOrDict = DeleteModelConfig | DeleteModelConfigDict
 
 class _DeleteModelParameters(_common.BaseModel):
@@ -1408,6 +1502,7 @@ class _DeleteModelParametersDict(TypedDict, total=False):
 
 class DeleteModelResponse(_common.BaseModel): ...
 class DeleteModelResponseDict(TypedDict, total=False): ...
+
 DeleteModelResponseOrDict = DeleteModelResponse | DeleteModelResponseDict
 
 class GenerationConfig(_common.BaseModel):
@@ -1443,6 +1538,7 @@ class GenerationConfigDict(TypedDict, total=False):
     temperature: float | None
     top_k: float | None
     top_p: float | None
+
 GenerationConfigOrDict = GenerationConfig | GenerationConfigDict
 
 class CountTokensConfig(_common.BaseModel):
@@ -1456,6 +1552,7 @@ class CountTokensConfigDict(TypedDict, total=False):
     system_instruction: ContentUnionDict | None
     tools: list[ToolDict] | None
     generation_config: GenerationConfigDict | None
+
 CountTokensConfigOrDict = CountTokensConfig | CountTokensConfigDict
 
 class _CountTokensParameters(_common.BaseModel):
@@ -1475,6 +1572,7 @@ class CountTokensResponse(_common.BaseModel):
 class CountTokensResponseDict(TypedDict, total=False):
     total_tokens: int | None
     cached_content_token_count: int | None
+
 CountTokensResponseOrDict = CountTokensResponse | CountTokensResponseDict
 
 class ComputeTokensConfig(_common.BaseModel):
@@ -1482,6 +1580,7 @@ class ComputeTokensConfig(_common.BaseModel):
 
 class ComputeTokensConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 ComputeTokensConfigOrDict = ComputeTokensConfig | ComputeTokensConfigDict
 
 class _ComputeTokensParameters(_common.BaseModel):
@@ -1503,6 +1602,7 @@ class TokensInfoDict(TypedDict, total=False):
     role: str | None
     token_ids: list[int] | None
     tokens: list[bytes] | None
+
 TokensInfoOrDict = TokensInfo | TokensInfoDict
 
 class ComputeTokensResponse(_common.BaseModel):
@@ -1510,6 +1610,7 @@ class ComputeTokensResponse(_common.BaseModel):
 
 class ComputeTokensResponseDict(TypedDict, total=False):
     tokens_info: list[TokensInfoDict] | None
+
 ComputeTokensResponseOrDict = ComputeTokensResponse | ComputeTokensResponseDict
 
 class GenerateVideosConfig(_common.BaseModel):
@@ -1539,6 +1640,7 @@ class GenerateVideosConfigDict(TypedDict, total=False):
     pubsub_topic: str | None
     negative_prompt: str | None
     enhance_prompt: bool | None
+
 GenerateVideosConfigOrDict = GenerateVideosConfig | GenerateVideosConfigDict
 
 class _GenerateVideosParameters(_common.BaseModel):
@@ -1564,6 +1666,7 @@ class VideoDict(TypedDict, total=False):
     uri: str | None
     video_bytes: bytes | None
     mime_type: str | None
+
 VideoOrDict = Video | VideoDict
 
 class GeneratedVideo(_common.BaseModel):
@@ -1571,6 +1674,7 @@ class GeneratedVideo(_common.BaseModel):
 
 class GeneratedVideoDict(TypedDict, total=False):
     video: VideoDict | None
+
 GeneratedVideoOrDict = GeneratedVideo | GeneratedVideoDict
 
 class GenerateVideosResponse(_common.BaseModel):
@@ -1582,6 +1686,7 @@ class GenerateVideosResponseDict(TypedDict, total=False):
     generated_videos: list[GeneratedVideoDict] | None
     rai_media_filtered_count: int | None
     rai_media_filtered_reasons: list[str] | None
+
 GenerateVideosResponseOrDict = GenerateVideosResponse | GenerateVideosResponseDict
 
 class GenerateVideosOperation(_common.BaseModel):
@@ -1599,6 +1704,7 @@ class GenerateVideosOperationDict(TypedDict, total=False):
     error: dict[str, Any] | None
     response: dict[str, Any] | None
     result: GenerateVideosResponseDict | None
+
 GenerateVideosOperationOrDict = GenerateVideosOperation | GenerateVideosOperationDict
 
 class GetTuningJobConfig(_common.BaseModel):
@@ -1606,6 +1712,7 @@ class GetTuningJobConfig(_common.BaseModel):
 
 class GetTuningJobConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetTuningJobConfigOrDict = GetTuningJobConfig | GetTuningJobConfigDict
 
 class _GetTuningJobParameters(_common.BaseModel):
@@ -1623,6 +1730,7 @@ class TunedModel(_common.BaseModel):
 class TunedModelDict(TypedDict, total=False):
     model: str | None
     endpoint: str | None
+
 TunedModelOrDict = TunedModel | TunedModelDict
 
 class GoogleRpcStatus(_common.BaseModel):
@@ -1634,6 +1742,7 @@ class GoogleRpcStatusDict(TypedDict, total=False):
     code: int | None
     details: list[dict[str, Any]] | None
     message: str | None
+
 GoogleRpcStatusOrDict = GoogleRpcStatus | GoogleRpcStatusDict
 
 class SupervisedHyperParameters(_common.BaseModel):
@@ -1645,6 +1754,7 @@ class SupervisedHyperParametersDict(TypedDict, total=False):
     adapter_size: AdapterSize | None
     epoch_count: int | None
     learning_rate_multiplier: float | None
+
 SupervisedHyperParametersOrDict = SupervisedHyperParameters | SupervisedHyperParametersDict
 
 class SupervisedTuningSpec(_common.BaseModel):
@@ -1656,6 +1766,7 @@ class SupervisedTuningSpecDict(TypedDict, total=False):
     hyper_parameters: SupervisedHyperParametersDict | None
     training_dataset_uri: str | None
     validation_dataset_uri: str | None
+
 SupervisedTuningSpecOrDict = SupervisedTuningSpec | SupervisedTuningSpecDict
 
 class DatasetDistributionDistributionBucket(_common.BaseModel):
@@ -1667,7 +1778,10 @@ class DatasetDistributionDistributionBucketDict(TypedDict, total=False):
     count: int | None
     left: float | None
     right: float | None
-DatasetDistributionDistributionBucketOrDict = DatasetDistributionDistributionBucket | DatasetDistributionDistributionBucketDict
+
+DatasetDistributionDistributionBucketOrDict = (
+    DatasetDistributionDistributionBucket | DatasetDistributionDistributionBucketDict
+)
 
 class DatasetDistribution(_common.BaseModel):
     buckets: list[DatasetDistributionDistributionBucket] | None
@@ -1688,6 +1802,7 @@ class DatasetDistributionDict(TypedDict, total=False):
     p5: float | None
     p95: float | None
     sum: float | None
+
 DatasetDistributionOrDict = DatasetDistribution | DatasetDistributionDict
 
 class DatasetStats(_common.BaseModel):
@@ -1709,6 +1824,7 @@ class DatasetStatsDict(TypedDict, total=False):
     user_input_token_distribution: DatasetDistributionDict | None
     user_message_per_example_distribution: DatasetDistributionDict | None
     user_output_token_distribution: DatasetDistributionDict | None
+
 DatasetStatsOrDict = DatasetStats | DatasetStatsDict
 
 class DistillationDataStats(_common.BaseModel):
@@ -1716,6 +1832,7 @@ class DistillationDataStats(_common.BaseModel):
 
 class DistillationDataStatsDict(TypedDict, total=False):
     training_dataset_stats: DatasetStatsDict | None
+
 DistillationDataStatsOrDict = DistillationDataStats | DistillationDataStatsDict
 
 class SupervisedTuningDatasetDistributionDatasetBucket(_common.BaseModel):
@@ -1727,7 +1844,10 @@ class SupervisedTuningDatasetDistributionDatasetBucketDict(TypedDict, total=Fals
     count: float | None
     left: float | None
     right: float | None
-SupervisedTuningDatasetDistributionDatasetBucketOrDict = SupervisedTuningDatasetDistributionDatasetBucket | SupervisedTuningDatasetDistributionDatasetBucketDict
+
+SupervisedTuningDatasetDistributionDatasetBucketOrDict = (
+    SupervisedTuningDatasetDistributionDatasetBucket | SupervisedTuningDatasetDistributionDatasetBucketDict
+)
 
 class SupervisedTuningDatasetDistribution(_common.BaseModel):
     billable_sum: int | None
@@ -1750,7 +1870,10 @@ class SupervisedTuningDatasetDistributionDict(TypedDict, total=False):
     p5: float | None
     p95: float | None
     sum: int | None
-SupervisedTuningDatasetDistributionOrDict = SupervisedTuningDatasetDistribution | SupervisedTuningDatasetDistributionDict
+
+SupervisedTuningDatasetDistributionOrDict = (
+    SupervisedTuningDatasetDistribution | SupervisedTuningDatasetDistributionDict
+)
 
 class SupervisedTuningDataStats(_common.BaseModel):
     total_billable_character_count: int | None
@@ -1777,6 +1900,7 @@ class SupervisedTuningDataStatsDict(TypedDict, total=False):
     user_input_token_distribution: SupervisedTuningDatasetDistributionDict | None
     user_message_per_example_distribution: SupervisedTuningDatasetDistributionDict | None
     user_output_token_distribution: SupervisedTuningDatasetDistributionDict | None
+
 SupervisedTuningDataStatsOrDict = SupervisedTuningDataStats | SupervisedTuningDataStatsDict
 
 class TuningDataStats(_common.BaseModel):
@@ -1786,6 +1910,7 @@ class TuningDataStats(_common.BaseModel):
 class TuningDataStatsDict(TypedDict, total=False):
     distillation_data_stats: DistillationDataStatsDict | None
     supervised_tuning_data_stats: SupervisedTuningDataStatsDict | None
+
 TuningDataStatsOrDict = TuningDataStats | TuningDataStatsDict
 
 class EncryptionSpec(_common.BaseModel):
@@ -1793,6 +1918,7 @@ class EncryptionSpec(_common.BaseModel):
 
 class EncryptionSpecDict(TypedDict, total=False):
     kms_key_name: str | None
+
 EncryptionSpecOrDict = EncryptionSpec | EncryptionSpecDict
 
 class PartnerModelTuningSpec(_common.BaseModel):
@@ -1804,6 +1930,7 @@ class PartnerModelTuningSpecDict(TypedDict, total=False):
     hyper_parameters: dict[str, Any] | None
     training_dataset_uri: str | None
     validation_dataset_uri: str | None
+
 PartnerModelTuningSpecOrDict = PartnerModelTuningSpec | PartnerModelTuningSpecDict
 
 class DistillationHyperParameters(_common.BaseModel):
@@ -1815,6 +1942,7 @@ class DistillationHyperParametersDict(TypedDict, total=False):
     adapter_size: AdapterSize | None
     epoch_count: int | None
     learning_rate_multiplier: float | None
+
 DistillationHyperParametersOrDict = DistillationHyperParameters | DistillationHyperParametersDict
 
 class DistillationSpec(_common.BaseModel):
@@ -1834,6 +1962,7 @@ class DistillationSpecDict(TypedDict, total=False):
     training_dataset_uri: str | None
     tuned_teacher_model_source: str | None
     validation_dataset_uri: str | None
+
 DistillationSpecOrDict = DistillationSpec | DistillationSpecDict
 
 class TuningJob(_common.BaseModel):
@@ -1881,6 +2010,7 @@ class TuningJobDict(TypedDict, total=False):
     labels: dict[str, str] | None
     pipeline_job: str | None
     tuned_model_display_name: str | None
+
 TuningJobOrDict = TuningJob | TuningJobDict
 
 class ListTuningJobsConfig(_common.BaseModel):
@@ -1894,6 +2024,7 @@ class ListTuningJobsConfigDict(TypedDict, total=False):
     page_size: int | None
     page_token: str | None
     filter: str | None
+
 ListTuningJobsConfigOrDict = ListTuningJobsConfig | ListTuningJobsConfigDict
 
 class _ListTuningJobsParameters(_common.BaseModel):
@@ -1909,6 +2040,7 @@ class ListTuningJobsResponse(_common.BaseModel):
 class ListTuningJobsResponseDict(TypedDict, total=False):
     next_page_token: str | None
     tuning_jobs: list[TuningJobDict] | None
+
 ListTuningJobsResponseOrDict = ListTuningJobsResponse | ListTuningJobsResponseDict
 
 class TuningExample(_common.BaseModel):
@@ -1918,6 +2050,7 @@ class TuningExample(_common.BaseModel):
 class TuningExampleDict(TypedDict, total=False):
     text_input: str | None
     output: str | None
+
 TuningExampleOrDict = TuningExample | TuningExampleDict
 
 class TuningDataset(_common.BaseModel):
@@ -1927,6 +2060,7 @@ class TuningDataset(_common.BaseModel):
 class TuningDatasetDict(TypedDict, total=False):
     gcs_uri: str | None
     examples: list[TuningExampleDict] | None
+
 TuningDatasetOrDict = TuningDataset | TuningDatasetDict
 
 class TuningValidationDataset(_common.BaseModel):
@@ -1934,6 +2068,7 @@ class TuningValidationDataset(_common.BaseModel):
 
 class TuningValidationDatasetDict(TypedDict, total=False):
     gcs_uri: str | None
+
 TuningValidationDatasetOrDict = TuningValidationDataset | TuningValidationDatasetDict
 
 class CreateTuningJobConfig(_common.BaseModel):
@@ -1957,6 +2092,7 @@ class CreateTuningJobConfigDict(TypedDict, total=False):
     adapter_size: AdapterSize | None
     batch_size: int | None
     learning_rate: float | None
+
 CreateTuningJobConfigOrDict = CreateTuningJobConfig | CreateTuningJobConfigDict
 
 class _CreateTuningJobParameters(_common.BaseModel):
@@ -1982,6 +2118,7 @@ class OperationDict(TypedDict, total=False):
     done: bool | None
     error: dict[str, Any] | None
     response: dict[str, Any] | None
+
 OperationOrDict = Operation | OperationDict
 
 class CreateCachedContentConfig(_common.BaseModel):
@@ -2003,6 +2140,7 @@ class CreateCachedContentConfigDict(TypedDict, total=False):
     system_instruction: ContentUnionDict | None
     tools: list[ToolDict] | None
     tool_config: ToolConfigDict | None
+
 CreateCachedContentConfigOrDict = CreateCachedContentConfig | CreateCachedContentConfigDict
 
 class _CreateCachedContentParameters(_common.BaseModel):
@@ -2026,6 +2164,7 @@ class CachedContentUsageMetadataDict(TypedDict, total=False):
     text_count: int | None
     total_token_count: int | None
     video_duration_seconds: int | None
+
 CachedContentUsageMetadataOrDict = CachedContentUsageMetadata | CachedContentUsageMetadataDict
 
 class CachedContent(_common.BaseModel):
@@ -2045,6 +2184,7 @@ class CachedContentDict(TypedDict, total=False):
     update_time: datetime.datetime | None
     expire_time: datetime.datetime | None
     usage_metadata: CachedContentUsageMetadataDict | None
+
 CachedContentOrDict = CachedContent | CachedContentDict
 
 class GetCachedContentConfig(_common.BaseModel):
@@ -2052,6 +2192,7 @@ class GetCachedContentConfig(_common.BaseModel):
 
 class GetCachedContentConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetCachedContentConfigOrDict = GetCachedContentConfig | GetCachedContentConfigDict
 
 class _GetCachedContentParameters(_common.BaseModel):
@@ -2067,6 +2208,7 @@ class DeleteCachedContentConfig(_common.BaseModel):
 
 class DeleteCachedContentConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 DeleteCachedContentConfigOrDict = DeleteCachedContentConfig | DeleteCachedContentConfigDict
 
 class _DeleteCachedContentParameters(_common.BaseModel):
@@ -2079,6 +2221,7 @@ class _DeleteCachedContentParametersDict(TypedDict, total=False):
 
 class DeleteCachedContentResponse(_common.BaseModel): ...
 class DeleteCachedContentResponseDict(TypedDict, total=False): ...
+
 DeleteCachedContentResponseOrDict = DeleteCachedContentResponse | DeleteCachedContentResponseDict
 
 class UpdateCachedContentConfig(_common.BaseModel):
@@ -2090,6 +2233,7 @@ class UpdateCachedContentConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
     ttl: str | None
     expire_time: datetime.datetime | None
+
 UpdateCachedContentConfigOrDict = UpdateCachedContentConfig | UpdateCachedContentConfigDict
 
 class _UpdateCachedContentParameters(_common.BaseModel):
@@ -2109,6 +2253,7 @@ class ListCachedContentsConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
     page_size: int | None
     page_token: str | None
+
 ListCachedContentsConfigOrDict = ListCachedContentsConfig | ListCachedContentsConfigDict
 
 class _ListCachedContentsParameters(_common.BaseModel):
@@ -2124,6 +2269,7 @@ class ListCachedContentsResponse(_common.BaseModel):
 class ListCachedContentsResponseDict(TypedDict, total=False):
     next_page_token: str | None
     cached_contents: list[CachedContentDict] | None
+
 ListCachedContentsResponseOrDict = ListCachedContentsResponse | ListCachedContentsResponseDict
 
 class ListFilesConfig(_common.BaseModel):
@@ -2135,6 +2281,7 @@ class ListFilesConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
     page_size: int | None
     page_token: str | None
+
 ListFilesConfigOrDict = ListFilesConfig | ListFilesConfigDict
 
 class _ListFilesParameters(_common.BaseModel):
@@ -2150,6 +2297,7 @@ class ListFilesResponse(_common.BaseModel):
 class ListFilesResponseDict(TypedDict, total=False):
     next_page_token: str | None
     files: list[FileDict] | None
+
 ListFilesResponseOrDict = ListFilesResponse | ListFilesResponseDict
 
 class CreateFileConfig(_common.BaseModel):
@@ -2157,6 +2305,7 @@ class CreateFileConfig(_common.BaseModel):
 
 class CreateFileConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 CreateFileConfigOrDict = CreateFileConfig | CreateFileConfigDict
 
 class _CreateFileParameters(_common.BaseModel):
@@ -2172,6 +2321,7 @@ class CreateFileResponse(_common.BaseModel):
 
 class CreateFileResponseDict(TypedDict, total=False):
     http_headers: dict[str, str] | None
+
 CreateFileResponseOrDict = CreateFileResponse | CreateFileResponseDict
 
 class GetFileConfig(_common.BaseModel):
@@ -2179,6 +2329,7 @@ class GetFileConfig(_common.BaseModel):
 
 class GetFileConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetFileConfigOrDict = GetFileConfig | GetFileConfigDict
 
 class _GetFileParameters(_common.BaseModel):
@@ -2194,6 +2345,7 @@ class DeleteFileConfig(_common.BaseModel):
 
 class DeleteFileConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 DeleteFileConfigOrDict = DeleteFileConfig | DeleteFileConfigDict
 
 class _DeleteFileParameters(_common.BaseModel):
@@ -2206,6 +2358,7 @@ class _DeleteFileParametersDict(TypedDict, total=False):
 
 class DeleteFileResponse(_common.BaseModel): ...
 class DeleteFileResponseDict(TypedDict, total=False): ...
+
 DeleteFileResponseOrDict = DeleteFileResponse | DeleteFileResponseDict
 
 class BatchJobSource(_common.BaseModel):
@@ -2217,6 +2370,7 @@ class BatchJobSourceDict(TypedDict, total=False):
     format: str | None
     gcs_uri: list[str] | None
     bigquery_uri: str | None
+
 BatchJobSourceOrDict = BatchJobSource | BatchJobSourceDict
 
 class BatchJobDestination(_common.BaseModel):
@@ -2228,6 +2382,7 @@ class BatchJobDestinationDict(TypedDict, total=False):
     format: str | None
     gcs_uri: str | None
     bigquery_uri: str | None
+
 BatchJobDestinationOrDict = BatchJobDestination | BatchJobDestinationDict
 
 class CreateBatchJobConfig(_common.BaseModel):
@@ -2239,6 +2394,7 @@ class CreateBatchJobConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
     display_name: str | None
     dest: str | None
+
 CreateBatchJobConfigOrDict = CreateBatchJobConfig | CreateBatchJobConfigDict
 
 class _CreateBatchJobParameters(_common.BaseModel):
@@ -2260,6 +2416,7 @@ class JobErrorDict(TypedDict, total=False):
     details: list[str] | None
     code: int | None
     message: str | None
+
 JobErrorOrDict = JobError | JobErrorDict
 
 class BatchJob(_common.BaseModel):
@@ -2287,6 +2444,7 @@ class BatchJobDict(TypedDict, total=False):
     model: str | None
     src: BatchJobSourceDict | None
     dest: BatchJobDestinationDict | None
+
 BatchJobOrDict = BatchJob | BatchJobDict
 
 class GetBatchJobConfig(_common.BaseModel):
@@ -2294,6 +2452,7 @@ class GetBatchJobConfig(_common.BaseModel):
 
 class GetBatchJobConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetBatchJobConfigOrDict = GetBatchJobConfig | GetBatchJobConfigDict
 
 class _GetBatchJobParameters(_common.BaseModel):
@@ -2309,6 +2468,7 @@ class CancelBatchJobConfig(_common.BaseModel):
 
 class CancelBatchJobConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 CancelBatchJobConfigOrDict = CancelBatchJobConfig | CancelBatchJobConfigDict
 
 class _CancelBatchJobParameters(_common.BaseModel):
@@ -2330,6 +2490,7 @@ class ListBatchJobsConfigDict(TypedDict, total=False):
     page_size: int | None
     page_token: str | None
     filter: str | None
+
 ListBatchJobsConfigOrDict = ListBatchJobsConfig | ListBatchJobsConfigDict
 
 class _ListBatchJobsParameters(_common.BaseModel):
@@ -2345,6 +2506,7 @@ class ListBatchJobsResponse(_common.BaseModel):
 class ListBatchJobsResponseDict(TypedDict, total=False):
     next_page_token: str | None
     batch_jobs: list[BatchJobDict] | None
+
 ListBatchJobsResponseOrDict = ListBatchJobsResponse | ListBatchJobsResponseDict
 
 class DeleteBatchJobConfig(_common.BaseModel):
@@ -2352,6 +2514,7 @@ class DeleteBatchJobConfig(_common.BaseModel):
 
 class DeleteBatchJobConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 DeleteBatchJobConfigOrDict = DeleteBatchJobConfig | DeleteBatchJobConfigDict
 
 class _DeleteBatchJobParameters(_common.BaseModel):
@@ -2371,6 +2534,7 @@ class DeleteResourceJobDict(TypedDict, total=False):
     name: str | None
     done: bool | None
     error: JobErrorDict | None
+
 DeleteResourceJobOrDict = DeleteResourceJob | DeleteResourceJobDict
 
 class GetOperationConfig(_common.BaseModel):
@@ -2378,6 +2542,7 @@ class GetOperationConfig(_common.BaseModel):
 
 class GetOperationConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 GetOperationConfigOrDict = GetOperationConfig | GetOperationConfigDict
 
 class _GetOperationParameters(_common.BaseModel):
@@ -2393,6 +2558,7 @@ class FetchPredictOperationConfig(_common.BaseModel):
 
 class FetchPredictOperationConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 FetchPredictOperationConfigOrDict = FetchPredictOperationConfig | FetchPredictOperationConfigDict
 
 class _FetchPredictOperationParameters(_common.BaseModel):
@@ -2424,6 +2590,7 @@ class TestTableItemDict(TypedDict, total=False):
     has_union: bool | None
     skip_in_api_mode: str | None
     ignore_keys: list[str] | None
+
 TestTableItemOrDict = TestTableItem | TestTableItemDict
 
 class TestTableFile(_common.BaseModel):
@@ -2437,6 +2604,7 @@ class TestTableFileDict(TypedDict, total=False):
     test_method: str | None
     parameter_names: list[str] | None
     test_table: list[TestTableItemDict] | None
+
 TestTableFileOrDict = TestTableFile | TestTableFileDict
 
 class ReplayRequest(_common.BaseModel):
@@ -2450,6 +2618,7 @@ class ReplayRequestDict(TypedDict, total=False):
     url: str | None
     headers: dict[str, str] | None
     body_segments: list[dict[str, Any]] | None
+
 ReplayRequestOrDict = ReplayRequest | ReplayRequestDict
 
 class ReplayResponse(_common.BaseModel):
@@ -2463,6 +2632,7 @@ class ReplayResponseDict(TypedDict, total=False):
     headers: dict[str, str] | None
     body_segments: list[dict[str, Any]] | None
     sdk_response_segments: list[dict[str, Any]] | None
+
 ReplayResponseOrDict = ReplayResponse | ReplayResponseDict
 
 class ReplayInteraction(_common.BaseModel):
@@ -2472,6 +2642,7 @@ class ReplayInteraction(_common.BaseModel):
 class ReplayInteractionDict(TypedDict, total=False):
     request: ReplayRequestDict | None
     response: ReplayResponseDict | None
+
 ReplayInteractionOrDict = ReplayInteraction | ReplayInteractionDict
 
 class ReplayFile(_common.BaseModel):
@@ -2481,6 +2652,7 @@ class ReplayFile(_common.BaseModel):
 class ReplayFileDict(TypedDict, total=False):
     replay_id: str | None
     interactions: list[ReplayInteractionDict] | None
+
 ReplayFileOrDict = ReplayFile | ReplayFileDict
 
 class UploadFileConfig(_common.BaseModel):
@@ -2494,6 +2666,7 @@ class UploadFileConfigDict(TypedDict, total=False):
     name: str | None
     mime_type: str | None
     display_name: str | None
+
 UploadFileConfigOrDict = UploadFileConfig | UploadFileConfigDict
 
 class DownloadFileConfig(_common.BaseModel):
@@ -2501,6 +2674,7 @@ class DownloadFileConfig(_common.BaseModel):
 
 class DownloadFileConfigDict(TypedDict, total=False):
     http_options: HttpOptionsDict | None
+
 DownloadFileConfigOrDict = DownloadFileConfig | DownloadFileConfigDict
 
 class UpscaleImageConfig(_common.BaseModel):
@@ -2514,6 +2688,7 @@ class UpscaleImageConfigDict(TypedDict, total=False):
     include_rai_reason: bool | None
     output_mime_type: str | None
     output_compression_quality: int | None
+
 UpscaleImageConfigOrDict = UpscaleImageConfig | UpscaleImageConfigDict
 
 class UpscaleImageParameters(_common.BaseModel):
@@ -2527,6 +2702,7 @@ class UpscaleImageParametersDict(TypedDict, total=False):
     image: ImageDict | None
     upscale_factor: str | None
     config: UpscaleImageConfigDict | None
+
 UpscaleImageParametersOrDict = UpscaleImageParameters | UpscaleImageParametersDict
 
 class RawReferenceImage(_common.BaseModel):
@@ -2538,6 +2714,7 @@ class RawReferenceImageDict(TypedDict, total=False):
     reference_image: ImageDict | None
     reference_id: int | None
     reference_type: str | None
+
 RawReferenceImageOrDict = RawReferenceImage | RawReferenceImageDict
 
 class MaskReferenceImage(_common.BaseModel):
@@ -2552,6 +2729,7 @@ class MaskReferenceImageDict(TypedDict, total=False):
     reference_id: int | None
     reference_type: str | None
     config: MaskReferenceConfigDict | None
+
 MaskReferenceImageOrDict = MaskReferenceImage | MaskReferenceImageDict
 
 class ControlReferenceImage(_common.BaseModel):
@@ -2566,6 +2744,7 @@ class ControlReferenceImageDict(TypedDict, total=False):
     reference_id: int | None
     reference_type: str | None
     config: ControlReferenceConfigDict | None
+
 ControlReferenceImageOrDict = ControlReferenceImage | ControlReferenceImageDict
 
 class StyleReferenceImage(_common.BaseModel):
@@ -2580,6 +2759,7 @@ class StyleReferenceImageDict(TypedDict, total=False):
     reference_id: int | None
     reference_type: str | None
     config: StyleReferenceConfigDict | None
+
 StyleReferenceImageOrDict = StyleReferenceImage | StyleReferenceImageDict
 
 class SubjectReferenceImage(_common.BaseModel):
@@ -2594,10 +2774,12 @@ class SubjectReferenceImageDict(TypedDict, total=False):
     reference_id: int | None
     reference_type: str | None
     config: SubjectReferenceConfigDict | None
+
 SubjectReferenceImageOrDict = SubjectReferenceImage | SubjectReferenceImageDict
 
 class LiveServerSetupComplete(_common.BaseModel): ...
 class LiveServerSetupCompleteDict(TypedDict, total=False): ...
+
 LiveServerSetupCompleteOrDict = LiveServerSetupComplete | LiveServerSetupCompleteDict
 
 class Transcription(_common.BaseModel):
@@ -2607,6 +2789,7 @@ class Transcription(_common.BaseModel):
 class TranscriptionDict(TypedDict, total=False):
     text: str | None
     finished: bool | None
+
 TranscriptionOrDict = Transcription | TranscriptionDict
 
 class LiveServerContent(_common.BaseModel):
@@ -2624,6 +2807,7 @@ class LiveServerContentDict(TypedDict, total=False):
     generation_complete: bool | None
     input_transcription: TranscriptionDict | None
     output_transcription: TranscriptionDict | None
+
 LiveServerContentOrDict = LiveServerContent | LiveServerContentDict
 
 class LiveServerToolCall(_common.BaseModel):
@@ -2631,6 +2815,7 @@ class LiveServerToolCall(_common.BaseModel):
 
 class LiveServerToolCallDict(TypedDict, total=False):
     function_calls: list[FunctionCallDict] | None
+
 LiveServerToolCallOrDict = LiveServerToolCall | LiveServerToolCallDict
 
 class LiveServerToolCallCancellation(_common.BaseModel):
@@ -2638,6 +2823,7 @@ class LiveServerToolCallCancellation(_common.BaseModel):
 
 class LiveServerToolCallCancellationDict(TypedDict, total=False):
     ids: list[str] | None
+
 LiveServerToolCallCancellationOrDict = LiveServerToolCallCancellation | LiveServerToolCallCancellationDict
 
 class LiveServerMessage(_common.BaseModel):
@@ -2655,6 +2841,7 @@ class LiveServerMessageDict(TypedDict, total=False):
     server_content: LiveServerContentDict | None
     tool_call: LiveServerToolCallDict | None
     tool_call_cancellation: LiveServerToolCallCancellationDict | None
+
 LiveServerMessageOrDict = LiveServerMessage | LiveServerMessageDict
 
 class LiveClientSetup(_common.BaseModel):
@@ -2668,6 +2855,7 @@ class LiveClientSetupDict(TypedDict, total=False):
     generation_config: GenerationConfigDict | None
     system_instruction: ContentDict | None
     tools: ToolListUnionDict | None
+
 LiveClientSetupOrDict = LiveClientSetup | LiveClientSetupDict
 
 class LiveClientContent(_common.BaseModel):
@@ -2677,6 +2865,7 @@ class LiveClientContent(_common.BaseModel):
 class LiveClientContentDict(TypedDict, total=False):
     turns: list[ContentDict] | None
     turn_complete: bool | None
+
 LiveClientContentOrDict = LiveClientContent | LiveClientContentDict
 
 class LiveClientRealtimeInput(_common.BaseModel):
@@ -2684,6 +2873,7 @@ class LiveClientRealtimeInput(_common.BaseModel):
 
 class LiveClientRealtimeInputDict(TypedDict, total=False):
     media_chunks: list[BlobDict] | None
+
 LiveClientRealtimeInputOrDict = LiveClientRealtimeInput | LiveClientRealtimeInputDict
 
 class LiveClientToolResponse(_common.BaseModel):
@@ -2691,6 +2881,7 @@ class LiveClientToolResponse(_common.BaseModel):
 
 class LiveClientToolResponseDict(TypedDict, total=False):
     function_responses: list[FunctionResponseDict] | None
+
 LiveClientToolResponseOrDict = LiveClientToolResponse | LiveClientToolResponseDict
 
 class LiveClientMessage(_common.BaseModel):
@@ -2704,10 +2895,12 @@ class LiveClientMessageDict(TypedDict, total=False):
     client_content: LiveClientContentDict | None
     realtime_input: LiveClientRealtimeInputDict | None
     tool_response: LiveClientToolResponseDict | None
+
 LiveClientMessageOrDict = LiveClientMessage | LiveClientMessageDict
 
 class AudioTranscriptionConfig(_common.BaseModel): ...
 class AudioTranscriptionConfigDict(TypedDict, total=False): ...
+
 AudioTranscriptionConfigOrDict = AudioTranscriptionConfig | AudioTranscriptionConfigDict
 
 class LiveConnectConfig(_common.BaseModel):
@@ -2737,4 +2930,5 @@ class LiveConnectConfigDict(TypedDict, total=False):
     tools: ToolListUnionDict | None
     input_audio_transcription: AudioTranscriptionConfigDict | None
     output_audio_transcription: AudioTranscriptionConfigDict | None
+
 LiveConnectConfigOrDict = LiveConnectConfig | LiveConnectConfigDict

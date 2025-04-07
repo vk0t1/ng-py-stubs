@@ -1,7 +1,9 @@
-from _typeshed import Incomplete
-from langfuse.model import PromptClient as PromptClient
+# mypy: ignore-errors
 from queue import Queue
 from threading import Thread
+
+from _typeshed import Incomplete
+from langfuse.model import PromptClient as PromptClient
 
 DEFAULT_PROMPT_CACHE_TTL_SECONDS: int
 DEFAULT_PROMPT_CACHE_REFRESH_WORKERS: int

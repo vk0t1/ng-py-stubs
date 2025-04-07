@@ -9,7 +9,16 @@ class MultipartUpload(_request_helpers.RequestsMixin, _upload.MultipartUpload):
     def transmit(self, transport, data, metadata, content_type, timeout=...): ...
 
 class ResumableUpload(_request_helpers.RequestsMixin, _upload.ResumableUpload):
-    def initiate(self, transport, stream, metadata, content_type, total_bytes: Incomplete | None = None, stream_final: bool = True, timeout=...): ...
+    def initiate(
+        self,
+        transport,
+        stream,
+        metadata,
+        content_type,
+        total_bytes: Incomplete | None = None,
+        stream_final: bool = True,
+        timeout=...,
+    ): ...
     def transmit_next_chunk(self, transport, timeout=...): ...
     def recover(self, transport): ...
 

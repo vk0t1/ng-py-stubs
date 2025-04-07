@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 import typing
 from collections import deque
 from pathlib import Path

@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from _typeshed import Incomplete
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration as EncryptionConfiguration
 from google.cloud.bigquery.external_config import HivePartitioningOptions as HivePartitioningOptions
@@ -5,8 +7,9 @@ from google.cloud.bigquery.format_options import ParquetOptions as ParquetOption
 from google.cloud.bigquery.job.base import _AsyncJob, _JobConfig
 from google.cloud.bigquery.query import ConnectionProperty as ConnectionProperty
 from google.cloud.bigquery.schema import SchemaField as SchemaField
-from google.cloud.bigquery.table import RangePartitioning as RangePartitioning, TableReference as TableReference, TimePartitioning as TimePartitioning
-from typing import Iterable
+from google.cloud.bigquery.table import RangePartitioning as RangePartitioning
+from google.cloud.bigquery.table import TableReference as TableReference
+from google.cloud.bigquery.table import TimePartitioning as TimePartitioning
 
 class ColumnNameCharacterMap:
     COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED: str

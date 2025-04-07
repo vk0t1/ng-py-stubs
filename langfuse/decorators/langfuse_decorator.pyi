@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import httpx
 from _typeshed import Incomplete
 from datetime import datetime

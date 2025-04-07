@@ -1,9 +1,18 @@
+# mypy: ignore-errors
+
 import typing
+
+from _typeshed import Incomplete
+
 from ....core.datetime_utils import serialize_datetime as serialize_datetime
-from ....core.pydantic_utilities import deep_union_pydantic_dicts as deep_union_pydantic_dicts, pydantic_v1 as pydantic_v1
+from ....core.pydantic_utilities import (
+    deep_union_pydantic_dicts as deep_union_pydantic_dicts,
+)
+from ....core.pydantic_utilities import (
+    pydantic_v1 as pydantic_v1,
+)
 from .base_event import BaseEvent as BaseEvent
 from .update_span_body import UpdateSpanBody as UpdateSpanBody
-from _typeshed import Incomplete
 
 class UpdateSpanEvent(BaseEvent):
     body: UpdateSpanBody

@@ -1,14 +1,19 @@
+# mypy: ignore-errors
+
 import enum
-import pydantic
 import typing
-from . import errors as errors
-from _typeshed import Incomplete
 from typing import Any
+
+import pydantic
+from _typeshed import Incomplete
+
+from . import errors as errors
 
 def set_value_by_path(data, keys, value) -> None: ...
 def get_value_by_path(data: Any, keys: list[str]): ...
 def convert_to_dict(obj: object) -> Any: ...
-T = typing.TypeVar('T', bound='BaseModel')
+
+T = typing.TypeVar("T", bound="BaseModel")
 
 class BaseModel(pydantic.BaseModel):
     model_config: Incomplete

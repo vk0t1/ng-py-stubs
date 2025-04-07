@@ -1,13 +1,22 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 from google.cloud.exceptions import NotFound as NotFound
 from google.cloud.storage._opentelemetry_tracing import create_trace_span as create_trace_span
-from google.cloud.storage.retry import DEFAULT_RETRY as DEFAULT_RETRY, DEFAULT_RETRY_IF_ETAG_IN_JSON as DEFAULT_RETRY_IF_ETAG_IN_JSON
+from google.cloud.storage.retry import DEFAULT_RETRY as DEFAULT_RETRY
+from google.cloud.storage.retry import DEFAULT_RETRY_IF_ETAG_IN_JSON as DEFAULT_RETRY_IF_ETAG_IN_JSON
 
 class HMACKeyMetadata:
     ACTIVE_STATE: str
     INACTIVE_STATE: str
     DELETED_STATE: str
-    def __init__(self, client, access_id: Incomplete | None = None, project_id: Incomplete | None = None, user_project: Incomplete | None = None) -> None: ...
+    def __init__(
+        self,
+        client,
+        access_id: Incomplete | None = None,
+        project_id: Incomplete | None = None,
+        user_project: Incomplete | None = None,
+    ) -> None: ...
     def __eq__(self, other): ...
     def __hash__(self): ...
     @property

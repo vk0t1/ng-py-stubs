@@ -1,6 +1,11 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 from google.cloud.storage._opentelemetry_tracing import create_trace_span as create_trace_span
-from google.cloud.storage.retry import DEFAULT_RETRY as DEFAULT_RETRY, DEFAULT_RETRY_IF_METAGENERATION_SPECIFIED as DEFAULT_RETRY_IF_METAGENERATION_SPECIFIED
+from google.cloud.storage.retry import DEFAULT_RETRY as DEFAULT_RETRY
+from google.cloud.storage.retry import (
+    DEFAULT_RETRY_IF_METAGENERATION_SPECIFIED as DEFAULT_RETRY_IF_METAGENERATION_SPECIFIED,
+)
 
 class _ACLEntity:
     READER_ROLE: str
@@ -47,9 +52,38 @@ class ACL:
     @property
     def client(self) -> None: ...
     def reload(self, client: Incomplete | None = None, timeout=..., retry=...) -> None: ...
-    def save(self, acl: Incomplete | None = None, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
-    def save_predefined(self, predefined, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
-    def clear(self, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
+    def save(
+        self,
+        acl: Incomplete | None = None,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...
+    def save_predefined(
+        self,
+        predefined,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...
+    def clear(
+        self,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...
 
 class BucketACL(ACL):
     bucket: Incomplete
@@ -76,6 +110,35 @@ class ObjectACL(ACL):
     def save_path(self): ...
     @property
     def user_project(self): ...
-    def save(self, acl: Incomplete | None = None, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
-    def save_predefined(self, predefined, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
-    def clear(self, client: Incomplete | None = None, if_generation_match: Incomplete | None = None, if_generation_not_match: Incomplete | None = None, if_metageneration_match: Incomplete | None = None, if_metageneration_not_match: Incomplete | None = None, timeout=..., retry=...) -> None: ...
+    def save(
+        self,
+        acl: Incomplete | None = None,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...
+    def save_predefined(
+        self,
+        predefined,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...
+    def clear(
+        self,
+        client: Incomplete | None = None,
+        if_generation_match: Incomplete | None = None,
+        if_generation_not_match: Incomplete | None = None,
+        if_metageneration_match: Incomplete | None = None,
+        if_metageneration_not_match: Incomplete | None = None,
+        timeout=...,
+        retry=...,
+    ) -> None: ...

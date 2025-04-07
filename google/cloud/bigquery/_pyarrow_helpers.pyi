@@ -1,5 +1,6 @@
-from _typeshed import Incomplete
 from typing import Any
+
+from _typeshed import Incomplete
 
 db_dtypes_import_exception: Incomplete
 db_dtypes_import_exception = exc

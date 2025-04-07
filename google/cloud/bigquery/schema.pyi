@@ -1,8 +1,10 @@
 import enum
-from _typeshed import Incomplete
-from google.cloud.bigquery import enums as enums, standard_sql as standard_sql
-from google.cloud.bigquery.enums import StandardSqlTypeNames as StandardSqlTypeNames
 from typing import Any, Iterable
+
+from _typeshed import Incomplete
+from google.cloud.bigquery import enums as enums
+from google.cloud.bigquery import standard_sql as standard_sql
+from google.cloud.bigquery.enums import StandardSqlTypeNames as StandardSqlTypeNames
 
 LEGACY_TO_STANDARD_TYPES: Incomplete
 
@@ -18,7 +20,22 @@ class FieldElementType:
     def to_api_repr(self) -> dict: ...
 
 class SchemaField:
-    def __init__(self, name: str, field_type: str, mode: str = 'NULLABLE', default_value_expression: str | None = None, description: str | _DefaultSentinel = ..., fields: Iterable['SchemaField'] = (), policy_tags: PolicyTagList | None | _DefaultSentinel = ..., precision: int | _DefaultSentinel = ..., scale: int | _DefaultSentinel = ..., max_length: int | _DefaultSentinel = ..., range_element_type: FieldElementType | str | None = None, rounding_mode: enums.RoundingMode | str | None = None, foreign_type_definition: str | None = None) -> None: ...
+    def __init__(
+        self,
+        name: str,
+        field_type: str,
+        mode: str = "NULLABLE",
+        default_value_expression: str | None = None,
+        description: str | _DefaultSentinel = ...,
+        fields: Iterable["SchemaField"] = (),
+        policy_tags: PolicyTagList | None | _DefaultSentinel = ...,
+        precision: int | _DefaultSentinel = ...,
+        scale: int | _DefaultSentinel = ...,
+        max_length: int | _DefaultSentinel = ...,
+        range_element_type: FieldElementType | str | None = None,
+        rounding_mode: enums.RoundingMode | str | None = None,
+        foreign_type_definition: str | None = None,
+    ) -> None: ...
     @classmethod
     def from_api_repr(cls, api_repr: dict) -> SchemaField: ...
     @property
@@ -77,7 +94,9 @@ class ForeignTypeInfo:
     def from_api_repr(cls, api_repr: dict[str, Any]) -> ForeignTypeInfo: ...
 
 class SerDeInfo:
-    def __init__(self, serialization_library: str, name: str | None = None, parameters: dict[str, str] | None = None) -> None: ...
+    def __init__(
+        self, serialization_library: str, name: str | None = None, parameters: dict[str, str] | None = None
+    ) -> None: ...
     @property
     def serialization_library(self) -> str: ...
     @serialization_library.setter
@@ -95,7 +114,13 @@ class SerDeInfo:
     def from_api_repr(cls, api_repr: dict) -> SerDeInfo: ...
 
 class StorageDescriptor:
-    def __init__(self, input_format: str | None = None, location_uri: str | None = None, output_format: str | None = None, serde_info: SerDeInfo | dict | None = None) -> None: ...
+    def __init__(
+        self,
+        input_format: str | None = None,
+        location_uri: str | None = None,
+        output_format: str | None = None,
+        serde_info: SerDeInfo | dict | None = None,
+    ) -> None: ...
     @property
     def input_format(self) -> str | None: ...
     @input_format.setter

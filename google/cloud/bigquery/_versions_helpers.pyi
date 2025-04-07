@@ -1,7 +1,8 @@
+from typing import Any
+
 import packaging.version
 from _typeshed import Incomplete
 from google.cloud.bigquery import exceptions as exceptions
-from typing import Any
 
 class PyarrowVersions:
     def __init__(self) -> None: ...

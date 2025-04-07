@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 from google.api_core.iam import Policy as Policy
 from google.cloud import exceptions as exceptions

@@ -1,10 +1,13 @@
+from typing import Any
+
 from _typeshed import Incomplete
 from google.cloud.bigquery import external_config as external_config
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration as EncryptionConfiguration
 from google.cloud.bigquery.model import ModelReference as ModelReference
-from google.cloud.bigquery.routine import Routine as Routine, RoutineReference as RoutineReference
-from google.cloud.bigquery.table import Table as Table, TableReference as TableReference
-from typing import Any
+from google.cloud.bigquery.routine import Routine as Routine
+from google.cloud.bigquery.routine import RoutineReference as RoutineReference
+from google.cloud.bigquery.table import Table as Table
+from google.cloud.bigquery.table import TableReference as TableReference
 
 class DatasetReference:
     def __init__(self, project: str, dataset_id: str) -> None: ...
@@ -27,7 +30,9 @@ class DatasetReference:
     def __hash__(self): ...
 
 class AccessEntry:
-    def __init__(self, role: str | None = None, entity_type: str | None = None, entity_id: dict[str, Any] | str | None = None) -> None: ...
+    def __init__(
+        self, role: str | None = None, entity_type: str | None = None, entity_id: dict[str, Any] | str | None = None
+    ) -> None: ...
     @property
     def role(self) -> str | None: ...
     @role.setter

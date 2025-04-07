@@ -1,7 +1,9 @@
-from google.cloud.bigquery import schema as schema
-from google.cloud.bigquery.format_options import AvroOptions as AvroOptions, ParquetOptions as ParquetOptions
-from google.cloud.bigquery.schema import SchemaField as SchemaField
 from typing import Any, Iterable
+
+from google.cloud.bigquery import schema as schema
+from google.cloud.bigquery.format_options import AvroOptions as AvroOptions
+from google.cloud.bigquery.format_options import ParquetOptions as ParquetOptions
+from google.cloud.bigquery.schema import SchemaField as SchemaField
 
 class ExternalSourceFormat:
     CSV: str
@@ -134,6 +136,7 @@ class GoogleSheetsOptions:
     def to_api_repr(self) -> dict: ...
     @classmethod
     def from_api_repr(cls, resource: dict) -> GoogleSheetsOptions: ...
+
 OptionsType = AvroOptions | BigtableOptions | CSVOptions | GoogleSheetsOptions | ParquetOptions
 
 class HivePartitioningOptions:
@@ -225,7 +228,9 @@ class ExternalConfig:
     def from_api_repr(cls, resource: dict) -> ExternalConfig: ...
 
 class ExternalCatalogDatasetOptions:
-    def __init__(self, default_storage_location_uri: str | None = None, parameters: dict[str, Any] | None = None) -> None: ...
+    def __init__(
+        self, default_storage_location_uri: str | None = None, parameters: dict[str, Any] | None = None
+    ) -> None: ...
     @property
     def default_storage_location_uri(self) -> str | None: ...
     @default_storage_location_uri.setter
@@ -239,7 +244,12 @@ class ExternalCatalogDatasetOptions:
     def from_api_repr(cls, api_repr: dict) -> ExternalCatalogDatasetOptions: ...
 
 class ExternalCatalogTableOptions:
-    def __init__(self, connection_id: str | None = None, parameters: dict[str, Any] | None = None, storage_descriptor: schema.StorageDescriptor | None = None) -> None: ...
+    def __init__(
+        self,
+        connection_id: str | None = None,
+        parameters: dict[str, Any] | None = None,
+        storage_descriptor: schema.StorageDescriptor | None = None,
+    ) -> None: ...
     @property
     def connection_id(self) -> str | None: ...
     @connection_id.setter

@@ -1,15 +1,25 @@
 import google.auth
 import pydantic
-from ._api_client import BaseApiClient as BaseApiClient, HttpOptions as HttpOptions, HttpOptionsDict as HttpOptionsDict
+
+from ._api_client import BaseApiClient as BaseApiClient
+from ._api_client import HttpOptions as HttpOptions
+from ._api_client import HttpOptionsDict as HttpOptionsDict
 from ._replay_api_client import ReplayApiClient as ReplayApiClient
-from .batches import AsyncBatches as AsyncBatches, Batches as Batches
-from .caches import AsyncCaches as AsyncCaches, Caches as Caches
-from .chats import AsyncChats as AsyncChats, Chats as Chats
-from .files import AsyncFiles as AsyncFiles, Files as Files
+from .batches import AsyncBatches as AsyncBatches
+from .batches import Batches as Batches
+from .caches import AsyncCaches as AsyncCaches
+from .caches import Caches as Caches
+from .chats import AsyncChats as AsyncChats
+from .chats import Chats as Chats
+from .files import AsyncFiles as AsyncFiles
+from .files import Files as Files
 from .live import AsyncLive as AsyncLive
-from .models import AsyncModels as AsyncModels, Models as Models
-from .operations import AsyncOperations as AsyncOperations, Operations as Operations
-from .tunings import AsyncTunings as AsyncTunings, Tunings as Tunings
+from .models import AsyncModels as AsyncModels
+from .models import Models as Models
+from .operations import AsyncOperations as AsyncOperations
+from .operations import Operations as Operations
+from .tunings import AsyncTunings as AsyncTunings
+from .tunings import Tunings as Tunings
 
 class AsyncClient:
     def __init__(self, api_client: BaseApiClient) -> None: ...
@@ -36,7 +46,17 @@ class DebugConfig(pydantic.BaseModel):
     replay_id: str | None
 
 class Client:
-    def __init__(self, *, vertexai: bool | None = None, api_key: str | None = None, credentials: google.auth.credentials.Credentials | None = None, project: str | None = None, location: str | None = None, debug_config: DebugConfig | None = None, http_options: HttpOptions | HttpOptionsDict | None = None) -> None: ...
+    def __init__(
+        self,
+        *,
+        vertexai: bool | None = None,
+        api_key: str | None = None,
+        credentials: google.auth.credentials.Credentials | None = None,
+        project: str | None = None,
+        location: str | None = None,
+        debug_config: DebugConfig | None = None,
+        http_options: HttpOptions | HttpOptionsDict | None = None,
+    ) -> None: ...
     @property
     def chats(self) -> Chats: ...
     @property

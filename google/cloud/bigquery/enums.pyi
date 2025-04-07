@@ -5,11 +5,11 @@ class AutoRowIDs(enum.Enum):
     GENERATE_UUID = ...
 
 class Compression(str, enum.Enum):
-    GZIP = 'GZIP'
-    DEFLATE = 'DEFLATE'
-    SNAPPY = 'SNAPPY'
-    ZSTD = 'ZSTD'
-    NONE = 'NONE'
+    GZIP = "GZIP"
+    DEFLATE = "DEFLATE"
+    SNAPPY = "SNAPPY"
+    ZSTD = "ZSTD"
+    NONE = "NONE"
 
 class DecimalTargetType:
     NUMERIC: str
@@ -44,8 +44,8 @@ class QueryPriority:
     BATCH: str
 
 class QueryApiMethod(str, enum.Enum):
-    INSERT = 'INSERT'
-    QUERY = 'QUERY'
+    INSERT = "INSERT"
+    QUERY = "QUERY"
 
 class SchemaUpdateOption:
     ALLOW_FIELD_ADDITION: str
@@ -86,38 +86,38 @@ class StandardSqlTypeNames(str, enum.Enum):
     FOREIGN = ...
 
 class EntityTypes(str, enum.Enum):
-    USER_BY_EMAIL = 'userByEmail'
-    GROUP_BY_EMAIL = 'groupByEmail'
-    DOMAIN = 'domain'
-    DATASET = 'dataset'
-    SPECIAL_GROUP = 'specialGroup'
-    VIEW = 'view'
-    IAM_MEMBER = 'iamMember'
-    ROUTINE = 'routine'
+    USER_BY_EMAIL = "userByEmail"
+    GROUP_BY_EMAIL = "groupByEmail"
+    DOMAIN = "domain"
+    DATASET = "dataset"
+    SPECIAL_GROUP = "specialGroup"
+    VIEW = "view"
+    IAM_MEMBER = "iamMember"
+    ROUTINE = "routine"
 
 class SqlTypeNames(str, enum.Enum):
-    STRING = 'STRING'
-    BYTES = 'BYTES'
-    INTEGER = 'INTEGER'
-    INT64 = 'INTEGER'
-    FLOAT = 'FLOAT'
-    FLOAT64 = 'FLOAT'
-    DECIMAL = 'NUMERIC'
-    NUMERIC = 'NUMERIC'
-    BIGDECIMAL = 'BIGNUMERIC'
-    BIGNUMERIC = 'BIGNUMERIC'
-    BOOLEAN = 'BOOLEAN'
-    BOOL = 'BOOLEAN'
-    GEOGRAPHY = 'GEOGRAPHY'
-    RECORD = 'RECORD'
-    STRUCT = 'RECORD'
-    TIMESTAMP = 'TIMESTAMP'
-    DATE = 'DATE'
-    TIME = 'TIME'
-    DATETIME = 'DATETIME'
-    INTERVAL = 'INTERVAL'
-    RANGE = 'RANGE'
-    FOREIGN = 'FOREIGN'
+    STRING = "STRING"
+    BYTES = "BYTES"
+    INTEGER = "INTEGER"
+    INT64 = "INTEGER"
+    FLOAT = "FLOAT"
+    FLOAT64 = "FLOAT"
+    DECIMAL = "NUMERIC"
+    NUMERIC = "NUMERIC"
+    BIGDECIMAL = "BIGNUMERIC"
+    BIGNUMERIC = "BIGNUMERIC"
+    BOOLEAN = "BOOLEAN"
+    BOOL = "BOOLEAN"
+    GEOGRAPHY = "GEOGRAPHY"
+    RECORD = "RECORD"
+    STRUCT = "RECORD"
+    TIMESTAMP = "TIMESTAMP"
+    DATE = "DATE"
+    TIME = "TIME"
+    DATETIME = "DATETIME"
+    INTERVAL = "INTERVAL"
+    RANGE = "RANGE"
+    FOREIGN = "FOREIGN"
 
 class WriteDisposition:
     WRITE_APPEND: str

@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 from _typeshed import Incomplete
 from google.api_core import retry as retry
 from google.cloud.storage.exceptions import InvalidResponse as InvalidResponse
