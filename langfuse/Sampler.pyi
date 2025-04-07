@@ -1,0 +1,9 @@
+from _typeshed import Incomplete
+
+log: Incomplete
+
+class Sampler:
+    sample_rate: float
+    def __init__(self, sample_rate: float) -> None: ...
+    def sample_event(self, event: dict): ...
+    def deterministic_sample(self, trace_id: str, sample_rate: float): ...

@@ -1,0 +1,69 @@
+from _typeshed import Incomplete
+from collections.abc import Generator
+from dataclasses import dataclass
+from langfuse import Langfuse as Langfuse
+from langfuse.client import StatefulGenerationClient as StatefulGenerationClient
+from langfuse.decorators import langfuse_context as langfuse_context
+from langfuse.media import LangfuseMedia as LangfuseMedia
+from langfuse.utils.langfuse_singleton import LangfuseSingleton as LangfuseSingleton
+
+log: Incomplete
+
+@dataclass
+class OpenAiDefinition:
+    module: str
+    object: str
+    method: str
+    type: str
+    sync: bool
+    min_version: str | None = ...
+
+OPENAI_METHODS_V0: Incomplete
+OPENAI_METHODS_V1: Incomplete
+
+class OpenAiArgsExtractor:
+    args: Incomplete
+    kwargs: Incomplete
+    def __init__(self, name: Incomplete | None = None, metadata: Incomplete | None = None, trace_id: Incomplete | None = None, session_id: Incomplete | None = None, user_id: Incomplete | None = None, tags: Incomplete | None = None, parent_observation_id: Incomplete | None = None, langfuse_prompt: Incomplete | None = None, **kwargs) -> None: ...
+    def get_langfuse_args(self): ...
+    def get_openai_args(self): ...
+
+class OpenAILangfuse:
+    def initialize(self): ...
+    def flush(cls) -> None: ...
+    def langfuse_auth_check(self): ...
+    def register_tracing(self) -> None: ...
+
+modifier: Incomplete
+
+def auth_check(): ...
+
+class LangfuseResponseGeneratorSync:
+    items: Incomplete
+    resource: Incomplete
+    response: Incomplete
+    generation: Incomplete
+    langfuse: Incomplete
+    is_nested_trace: Incomplete
+    completion_start_time: Incomplete
+    def __init__(self, *, resource, response, generation, langfuse, is_nested_trace) -> None: ...
+    def __iter__(self): ...
+    def __next__(self): ...
+    def __enter__(self): ...
+    def __exit__(self, exc_type: type[BaseException] | None, exc_value: BaseException | None, traceback: types.TracebackType | None) -> None: ...
+
+class LangfuseResponseGeneratorAsync:
+    items: Incomplete
+    resource: Incomplete
+    response: Incomplete
+    generation: Incomplete
+    langfuse: Incomplete
+    is_nested_trace: Incomplete
+    completion_start_time: Incomplete
+    def __init__(self, *, resource, response, generation, langfuse, is_nested_trace) -> None: ...
+    async def __aiter__(self) -> Generator[Incomplete]: ...
+    async def __anext__(self): ...
+    async def __aenter__(self): ...
+    async def __aexit__(self, exc_type, exc_value, traceback) -> None: ...
+    async def close(self) -> None: ...
+    async def aclose(self) -> None: ...

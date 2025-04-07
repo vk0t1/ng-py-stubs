@@ -1,0 +1,4 @@
+from .open_ai_completion_usage_schema import OpenAiCompletionUsageSchema as OpenAiCompletionUsageSchema
+from .open_ai_response_usage_schema import OpenAiResponseUsageSchema as OpenAiResponseUsageSchema
+
+UsageDetails = dict[str, int] | OpenAiCompletionUsageSchema | OpenAiResponseUsageSchema

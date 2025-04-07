@@ -1,0 +1,3 @@
+from typing import Any, Mapping
+
+def remove_none_from_dict(original: Mapping[str, Any | None]) -> dict[str, Any]: ...

@@ -1,0 +1,3 @@
+import datetime as dt
+
+def serialize_datetime(v: dt.datetime) -> str: ...

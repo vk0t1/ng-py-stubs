@@ -1,0 +1,1 @@
+CreateScoreValue = float | str

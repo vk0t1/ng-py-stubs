@@ -1,0 +1,36 @@
+import httpx
+import typing
+from .file import File as File, convert_file_dict_to_httpx_tuples as convert_file_dict_to_httpx_tuples
+from .jsonable_encoder import jsonable_encoder as jsonable_encoder
+from .query_encoder import encode_query as encode_query
+from .remove_none_from_dict import remove_none_from_dict as remove_none_from_dict
+from .request_options import RequestOptions as RequestOptions
+from _typeshed import Incomplete
+
+INITIAL_RETRY_DELAY_SECONDS: float
+MAX_RETRY_DELAY_SECONDS: int
+MAX_RETRY_DELAY_SECONDS_FROM_HEADER: int
+
+def remove_omit_from_dict(original: dict[str, typing.Any | None], omit: typing.Any | None) -> dict[str, typing.Any]: ...
+def maybe_filter_request_body(data: typing.Any | None, request_options: RequestOptions | None, omit: typing.Any | None) -> typing.Any | None: ...
+def get_request_body(*, json: typing.Any | None, data: typing.Any | None, request_options: RequestOptions | None, omit: typing.Any | None) -> tuple[typing.Any | None, typing.Any | None]: ...
+
+class HttpClient:
+    base_url: Incomplete
+    base_timeout: Incomplete
+    base_headers: Incomplete
+    httpx_client: Incomplete
+    def __init__(self, *, httpx_client: httpx.Client, base_timeout: float | None, base_headers: dict[str, str], base_url: str | None = None) -> None: ...
+    def get_base_url(self, maybe_base_url: str | None) -> str: ...
+    def request(self, path: str | None = None, *, method: str, base_url: str | None = None, params: dict[str, typing.Any] | None = None, json: typing.Any | None = None, data: typing.Any | None = None, content: bytes | typing.Iterator[bytes] | typing.AsyncIterator[bytes] | None = None, files: dict[str, File | list[File] | None] | None = None, headers: dict[str, typing.Any] | None = None, request_options: RequestOptions | None = None, retries: int = 0, omit: typing.Any | None = None) -> httpx.Response: ...
+    def stream(self, path: str | None = None, *, method: str, base_url: str | None = None, params: dict[str, typing.Any] | None = None, json: typing.Any | None = None, data: typing.Any | None = None, content: bytes | typing.Iterator[bytes] | typing.AsyncIterator[bytes] | None = None, files: dict[str, File | list[File] | None] | None = None, headers: dict[str, typing.Any] | None = None, request_options: RequestOptions | None = None, retries: int = 0, omit: typing.Any | None = None) -> typing.Iterator[httpx.Response]: ...
+
+class AsyncHttpClient:
+    base_url: Incomplete
+    base_timeout: Incomplete
+    base_headers: Incomplete
+    httpx_client: Incomplete
+    def __init__(self, *, httpx_client: httpx.AsyncClient, base_timeout: float | None, base_headers: dict[str, str], base_url: str | None = None) -> None: ...
+    def get_base_url(self, maybe_base_url: str | None) -> str: ...
+    async def request(self, path: str | None = None, *, method: str, base_url: str | None = None, params: dict[str, typing.Any] | None = None, json: typing.Any | None = None, data: typing.Any | None = None, content: bytes | typing.Iterator[bytes] | typing.AsyncIterator[bytes] | None = None, files: dict[str, File | list[File] | None] | None = None, headers: dict[str, typing.Any] | None = None, request_options: RequestOptions | None = None, retries: int = 0, omit: typing.Any | None = None) -> httpx.Response: ...
+    async def stream(self, path: str | None = None, *, method: str, base_url: str | None = None, params: dict[str, typing.Any] | None = None, json: typing.Any | None = None, data: typing.Any | None = None, content: bytes | typing.Iterator[bytes] | typing.AsyncIterator[bytes] | None = None, files: dict[str, File | list[File] | None] | None = None, headers: dict[str, typing.Any] | None = None, request_options: RequestOptions | None = None, retries: int = 0, omit: typing.Any | None = None) -> typing.AsyncIterator[httpx.Response]: ...
