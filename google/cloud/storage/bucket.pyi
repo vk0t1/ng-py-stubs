@@ -1,5 +1,4 @@
 # mypy: ignore-errors
-
 from collections.abc import Generator
 
 from _typeshed import Incomplete
